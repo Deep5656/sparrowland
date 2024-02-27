@@ -1,0 +1,49 @@
+@for $i from 1 through 20 {
+    .pdtop#{$i} {
+        padding-top: #{$i}px;
+    }
+
+    .pdleft#{$i} {
+        padding-left: #{$i}px;
+    }
+
+    .pdright#{$i} {
+        padding-right: #{$i}px;
+    }
+
+    .pdbtm#{$i} {
+        padding-bottom: #{$i}px;
+    }
+
+    .mb#{$i} {
+        margin-bottom: #{$i}px;
+    }
+
+    .mt#{$i} {
+        margin-top: #{$i}px;
+    }
+
+    .ml#{$i} {
+        margin-left: #{$i}px;
+    }
+
+    .mr#{$i} {
+        margin-right: #{$i}px;
+    }
+
+    .m#{$i}{
+        margin: #{$i}px;
+    }
+    .p#{$i}{
+        padding: #{$i}px;
+    }
+
+    .fs#{$i} {
+        font-size: #{$i}px;
+        cursor: pointer;
+
+        @if $component =="topNav" {
+            color: #fff;
+        }
+    }
+}

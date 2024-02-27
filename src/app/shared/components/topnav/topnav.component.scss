@@ -1,0 +1,8 @@
+$component: "topNav";
+@import '../../common-css/common-css.scss';
+
+.active{
+  background-color: lighten($color: #3f51b5, $amount: 10%);
+  border-radius: 10px;
+  
+}

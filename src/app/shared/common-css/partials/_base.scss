@@ -1,0 +1,30 @@
+@mixin flex($item) {
+    display: flex;
+    flex-direction: $item;
+    flex-wrap: wrap;
+}
+
+.flex-row {
+    @include flex(row);
+}
+
+.flex-col {
+    @include flex(column);
+}
+.nowrap{
+    flex-wrap: nowrap;
+}
+
+$value: 5%;
+@for $i from 1 through 20 {
+    .flex-row-#{$i * 5} {
+        width:#{$value * $i};
+        @if $component != "topNav" {
+            @media (max-width:650px) {
+                width: 100%;
+            }
+        }
+    }
+
+}
+
