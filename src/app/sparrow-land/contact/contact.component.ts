@@ -1,24 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit{
+export class ContactComponent implements OnInit {
 
-  form:FormGroup = new FormGroup<any>({});
+  form: FormGroup = new FormGroup<any>({});
 
-  constructor(private fb:FormBuilder){}
+  constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef) { }
   ngOnInit(): void {
     this.form = this.fb.group({
-      'firstName': new FormControl('',[Validators.required]),
-      'lastName': new FormControl('',[Validators.required]),
-      'email': new FormControl('',[Validators.required,Validators.email]) 
+      'userDetails': new FormGroup({
+        'firstName': new FormControl('', [Validators.required]),
+        'lastName': new FormControl('', [Validators.required]),
+        'email': new FormControl('', [Validators.required, Validators.email]),
+        'cityName': new FormControl('', [Validators.required]),
+        'gender': new FormControl('', [Validators.required]),
+      }),
+      'addComments': new FormArray([])
     })
   }
 
 
- 
+
+  addComments() {
+    (this.form.get('addComments') as FormArray).push(new FormControl(''));
+    this.cdRef.detectChanges();
+    console.log('formArray', this.addCommentsControls);
+  }
+
+  removeComment() {
+    const commentsArray = this.form.get('addComments') as FormArray;
+    if (commentsArray.length > 0) {
+      commentsArray.removeAt(commentsArray.length - 1);
+      this.cdRef.detectChanges();
+      console.log('Removed last comment. Updated formArray:', commentsArray);
+    } else {
+      console.log('No comments to remove.');
+      alert('No comments to remove.');
+    }
+  }
+  
+
+  submitForm() {
+    console.log("form", this.form);
+  }
+
+  get addCommentsControls(): AbstractControl[] {
+    return (this.form.get('addComments') as FormArray).controls;
+  }
+
 }

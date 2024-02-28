@@ -7,7 +7,9 @@ import { RouterModule, Routes } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonModule} from '@angular/material/button';
 
 const sparrowLandRoutes:Routes = [
   {path:'birds', data:{preload:true}, loadChildren: () => import('./birds/birds.module').then(m => m.BirdsModule)},
@@ -25,7 +27,10 @@ const sparrowLandRoutes:Routes = [
     CommonModule,
     MatCardModule,
     MatInputModule,
+    MatSelectModule,
     ReactiveFormsModule,
+    MatRadioModule,
+    MatButtonModule,
     RouterModule.forChild(sparrowLandRoutes)
   ],
   exports:[

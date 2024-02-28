@@ -1,31 +1,70 @@
 <div class="flex-row">
-    <div class="flex-row-10"></div>
-    <div class="flex-row-80">
-        <mat-card>
-            <mat-card-content class="tacenter fs12">Contact Us</mat-card-content>
-            <form class="m20" [formGroup]="form">
+  <div class="flex-row-10"></div>
+  <div class="flex-row-80">
+    <mat-card class="mt20">
+      <mat-card-content class="tacenter fs12">Contact Us</mat-card-content>
+      <form class="m20" [formGroup]="form" (ngSubmit)="submitForm()">
 
-                <small class="redcolor" *ngIf="form.controls['firstName'].valid">firstName is required !!</small>
-                <mat-form-field class="example-full-width">
-                  <mat-label class="fs12 fwbold" style="color: black;">First Name</mat-label>
-                  <input matInput formControlName="firstName">
-                </mat-form-field>
+        <div formGroupName="userDetails">
+          <small class="redcolor"
+            *ngIf="!form.get('userDetails.firstName')?.valid && form.get('userDetails.firstName')?.touched">First Name
+            is
+            required !!</small>
+          <mat-form-field class="example-full-width">
+            <mat-label class="fs12 fwbold" style="color: black;">First Name</mat-label>
+            <input matInput formControlName="firstName">
+          </mat-form-field>
 
-                <small>lastName is required !!</small>
-                <mat-form-field class="example-full-width">
-                  <mat-label class="fs12 fwbold" style="color: black;">Last Name</mat-label>
-                  <input matInput formControlName="lastName">
-                </mat-form-field>
+          <small class="redcolor"
+            *ngIf="!form.get('userDetails.lastName')?.valid && form.get('userDetails.lastName')?.touched">lastName is
+            required !!</small>
+          <mat-form-field class="example-full-width">
+            <mat-label class="fs12 fwbold" style="color: black;">Last Name</mat-label>
+            <input matInput formControlName="lastName">
+          </mat-form-field>
 
-                <small>email is required !!</small>
-                <mat-form-field class="example-full-width">
-                  <mat-label class="fs12 fwbold" style="color: black;">Email</mat-label>
-                  <input matInput formControlName="email">
-                </mat-form-field>
+          <small class="redcolor"
+            *ngIf="!form.get('userDetails.email')?.valid && form.get('userDetails.email')?.touched"> valid email is
+            required
+            !!</small>
+          <mat-form-field class="example-full-width">
+            <mat-label class="fs12 fwbold" style="color: black;">Email</mat-label>
+            <input matInput formControlName="email">
+          </mat-form-field>
 
-               
-            </form>
-        </mat-card>
-    </div>
-    <div class="flex-row-10"></div>
+          <mat-form-field>
+            <mat-label class="fs12" style="color: black;">City</mat-label>
+            <mat-select class="example-full-width" formControlName="cityName">
+              <mat-option value="Kanpur Nagar">Kanpur Nagar</mat-option>
+              <mat-option value="Lucknow">Lucknow</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+
+          <mat-label class="fs12">Gender</mat-label>
+          <mat-radio-group aria-label="Select an option" formControlName="gender">
+            <mat-radio-button color="primary" value="Male"><span class="fs12">Male</span></mat-radio-button>
+            <mat-radio-button color="primary" value="Female"><span class="fs12">Female</span></mat-radio-button>
+          </mat-radio-group><br>
+
+        </div>
+
+        <ng-container class="mb10" *ngFor="let comment of addCommentsControls;let i = index;">
+          <mat-form-field class="example-full-width" formArrayName="addComments">
+            <mat-label class="fs12">Add Comments</mat-label>
+            <input class="mb10" type="text" matInput formControlName="{{i}}">
+          </mat-form-field>
+        </ng-container>
+
+        <button mat-flat-button class="flat-btn mb10 mr10"><span class="color fs12" (click)="addComments()">+ Add
+            Comments</span></button>
+        <button mat-flat-button class="flat-btn mb10"><span class="color fs12" (click)="removeComment()">Remove
+            Comment</span></button><br>
+
+        <button mat-raised-button color="primary">Submit</button>
+
+      </form>
+    </mat-card>
+  </div>
+  <div class="flex-row-10"></div>
 </div>
