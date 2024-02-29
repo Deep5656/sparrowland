@@ -18,7 +18,7 @@ export class ContactComponent implements OnInit {
         'lastName': new FormControl('', [Validators.required]),
         'email': new FormControl('', [Validators.required, Validators.email]),
         'cityName': new FormControl('', [Validators.required]),
-        'gender': new FormControl('', [Validators.required]),
+        'gender': new FormControl(''),
       }),
       'addComments': new FormArray([])
     })
@@ -47,6 +47,11 @@ export class ContactComponent implements OnInit {
 
   submitForm() {
     console.log("form", this.form);
+    if(this.form.valid){
+
+    }else{
+      alert('fill all the required fields')
+    }
   }
 
   get addCommentsControls(): AbstractControl[] {
