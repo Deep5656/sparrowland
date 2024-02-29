@@ -10,6 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+import { rxjsNav } from './about/rxjs-topnav/rxjsTopNav.component';
 
 const sparrowLandRoutes:Routes = [
   {path:'birds', data:{preload:true}, loadChildren: () => import('./birds/birds.module').then(m => m.BirdsModule)},
@@ -21,7 +24,8 @@ const sparrowLandRoutes:Routes = [
   declarations: [
     AboutComponent,
     ContactComponent,
-    HomeComponent
+    HomeComponent,
+    rxjsNav
   ],
   imports: [
     CommonModule,
@@ -31,6 +35,8 @@ const sparrowLandRoutes:Routes = [
     ReactiveFormsModule,
     MatRadioModule,
     MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
     RouterModule.forChild(sparrowLandRoutes)
   ],
   exports:[

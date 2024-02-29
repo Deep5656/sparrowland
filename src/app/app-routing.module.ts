@@ -4,6 +4,7 @@ import { AboutComponent } from './sparrow-land/about/about.component';
 import { ContactComponent } from './sparrow-land/contact/contact.component';
 import { HomeComponent } from './sparrow-land/home/home.component';
 import { customPreLoadService } from './shared/services/custom_preload.service';
+import { rxjsNav } from './sparrow-land/about/rxjs-topnav/rxjsTopNav.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
