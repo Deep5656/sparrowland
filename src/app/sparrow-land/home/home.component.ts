@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  prev(){
+    console.log('clicked');
+    
+  }
+  next(){
+    console.log('clicked');
+    window.scrollBy(100,100);
+  }
 }
