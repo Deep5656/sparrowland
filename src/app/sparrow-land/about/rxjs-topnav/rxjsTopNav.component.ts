@@ -9,8 +9,4 @@ export class rxjsNav implements OnInit{
     ngOnInit(): void {
 
     }
-
-    closeDialog(){
-        
-    }
 }
