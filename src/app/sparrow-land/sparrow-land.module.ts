@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import { rxjsNav } from './about/rxjs-topnav/rxjsTopNav.component';
+import { fromEventComponent } from './about/rxjs-topnav/fromEvent/fromEvent.component';
 
 const sparrowLandRoutes:Routes = [
   {path:'birds', data:{preload:true}, loadChildren: () => import('./birds/birds.module').then(m => m.BirdsModule)},
@@ -25,7 +26,8 @@ const sparrowLandRoutes:Routes = [
     AboutComponent,
     ContactComponent,
     HomeComponent,
-    rxjsNav
+    rxjsNav,
+    fromEventComponent
   ],
   imports: [
     CommonModule,
