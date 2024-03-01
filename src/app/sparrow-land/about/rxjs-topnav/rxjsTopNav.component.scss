@@ -1,7 +1,16 @@
 $component:'rxjs';
 @import '../../../shared/common-css/common-css.scss';
 
-.closeBtn{
-    font-size: 20px;
-    margin-top: 5px;
+
+.box{
+    width: 150px;
+    height: 150px;
+    background: lighten($color: #c0caff, $amount: 8%);
+    border: 3px;
+    border-radius: 3px;
+    margin: 20px;
+
+    &:hover{
+        background: #d7dcf7;
+    }
 }
