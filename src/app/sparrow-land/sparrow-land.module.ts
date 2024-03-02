@@ -39,7 +39,7 @@ const sparrowLandRoutes:Routes = [
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
-    RouterModule.forChild(sparrowLandRoutes)
+    RouterModule.forChild(sparrowLandRoutes),
   ],
   exports:[
     RouterModule

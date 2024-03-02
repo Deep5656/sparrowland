@@ -1,98 +1,56 @@
 <div class="flex-row">
-    <div class="flex-row-80">
-        <div class="flex-row" style="justify-content:space-between;border-right: 1px solid black; max-height: 90vh; overflow: scroll;">
-            <div class="flex-row-20 mt20 mr5">
-                <div class="flex-row">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>Sparrow</mat-card-title>
-                            <mat-card-subtitle>Indian House Hold Bird</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Alias accusamus molestiae enim minima consequuntur quia voluptatibus rem quisquam
-                                blanditiis expedita?</p>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </div>
-            <div class="flex-row-20 mt20 mr5">
-                <div class="flex-row">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>Sparrow</mat-card-title>
-                            <mat-card-subtitle>Indian House Hold Bird</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Alias accusamus molestiae enim minima consequuntur quia voluptatibus rem quisquam
-                                blanditiis expedita?</p>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </div>
-            <div class="flex-row-20 mt20 mr5">
-                <div class="flex-row">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>Sparrow</mat-card-title>
-                            <mat-card-subtitle>Indian House Hold Bird</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Alias accusamus molestiae enim minima consequuntur quia voluptatibus rem quisquam
-                                blanditiis expedita?</p>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </div>
-            <div class="flex-row-20 mt20 mr5">
-                <div class="flex-row">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>Sparrow</mat-card-title>
-                            <mat-card-subtitle>Indian House Hold Bird</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Alias accusamus molestiae enim minima consequuntur quia voluptatibus rem quisquam
-                                blanditiis expedita?</p>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </div>
-            <div class="flex-row-20 mt20 mr5">
-                <div class="flex-row">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>Sparrow</mat-card-title>
-                            <mat-card-subtitle>Indian House Hold Bird</mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Alias accusamus molestiae enim minima consequuntur quia voluptatibus rem quisquam
-                                blanditiis expedita?</p>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
+    <div class="flex-row-100">
+        <div class="flex-row center">
+            <div class="flex-row-60">
+                <input type="text" placeholder="Search Bird Here...." class="searchBar" [(ngModel)]="searchVal">
+                <button mat-raised-button class="btn ml10 p10" style="background: #c0caff;" (click)="save()">Save</button>
             </div>
         </div>
     </div>
+    <div class="flex-row-80">
+        <div class="flex-row" style="max-height: 90vh; overflow: scroll;">
+            <ng-container *ngFor="let bird of birdsArray | filterPipe:searchVal;let i = index;">
+                <div class="flex-row-20 m20 mr5">
+                    <div class="flex-row">
+                        <mat-card class="box">
+                            <mat-card-header>
+                                <mat-card-title>{{bird?.title}}</mat-card-title>
+                                <mat-card-subtitle>{{bird?.subtitle}}</mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <p style="text-align: justify;">{{bird?.about | shortTxt:50}}</p>
+                            </mat-card-content>
+                            <button mat-flat-button class="fs12" style="position:absolute;bottom:0px;left:0px" (click)="update(i)">update</button>
+                            <button mat-flat-button class="fs12" style="position:absolute;bottom:0px;left:60px;width:10px" (click)="Like(i)">Like</button>
+                            <button mat-flat-button class="fs12" style="position:absolute;bottom:0px;right:0px" (click)="remove(i)">Remove</button>
+                        </mat-card>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
     <div class="flex-row-20">
-        <div class="flex-col center mt20">
+        <div class="flex-col center mt20" [formGroup]="form" style="border-left: 1px solid black;">
             <h3 class="fs12">Add New Bird</h3>
             <mat-form-field>
                 <mat-label class="fs12">Bird Title</mat-label>
-                <input type="text" matInput>
+                <input type="text" matInput formControlName="title">
             </mat-form-field>
             <mat-form-field>
                 <mat-label class="fs12">Bird SubTitle</mat-label>
-                <input type="text" matInput>
+                <input type="text" matInput formControlName="subtitle">
             </mat-form-field>
+            <div class=" flex-col file">
+                <label class="fs12">Bird Image</label>
+                <input style="width: 200px;" type="file" disabled="true">
+            </div>
             <mat-form-field>
                 <mat-label class="fs12">About Bird</mat-label>
-                <input type="text" matInput>
+                <textarea matInput formControlName="about"></textarea>
             </mat-form-field>
+
+            <button mat-flat-button class="btn" *ngIf="!this.Autoupdate" (click)="add()">Add</button>
+            <button mat-flat-button class="btn" *ngIf="this.Autoupdate" (click)="updateVal()">Update</button>
         </div>
     </div>
 </div>

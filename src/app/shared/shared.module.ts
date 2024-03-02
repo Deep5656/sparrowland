@@ -8,11 +8,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { DataService } from './services/data.service';
 import { SubjectService } from './services/subject.service';
 import { customPreLoadService } from './services/custom_preload.service';
+import { shortTxt } from './pipes/shortTxt.pipe';
+import { filterPipe } from './pipes/filter.pipe';
 
 
 @NgModule({
   declarations: [
     TopnavComponent,
+    shortTxt,
+    filterPipe
   ],
   imports: [
     CommonModule,
@@ -28,6 +32,8 @@ import { customPreLoadService } from './services/custom_preload.service';
   ],
   exports: [
     TopnavComponent,
+    shortTxt,
+    filterPipe
     ]
 })
 export class SharedModule { 

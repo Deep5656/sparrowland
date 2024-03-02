@@ -1,3 +1,38 @@
 $component: 'bird-home';
 @import '../../../shared/common-css/common-css.scss';
 
+
+
+.btn {
+    width: 15%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 3px solid #c0caff;
+    cursor: pointer;
+}
+
+.box {
+    height: 200px;
+    width: 200px;
+    overflow: auto;
+    @media (max-width:650px) {
+        width: 100%;
+    }
+
+}
+
+.searchBar{
+    width: 60%;
+    margin-left: 30px;
+    padding: 10px;
+    margin-top: 10px;
+    border: 3px solid #c0caff;
+    border-radius: 3px;
+}
+
+.file{
+    margin-bottom: 20px;
+}
+
+
+
