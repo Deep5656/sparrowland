@@ -10,12 +10,19 @@ import { rxjsNav } from 'src/app/sparrow-land/about/rxjs-topnav/rxjsTopNav.compo
 })
 export class AboutComponent {
 
+  backFlag:any = true;
   constructor(private router:Router,private dialog:MatDialog){}
 
   rxjs(){
+    this.backFlag = false;
     const dialog = this.dialog.open(rxjsNav,{
       width:'80%',
       height:'90%'
     })
   }
+
+  back(){
+    this.backFlag = true;
+    this.router.navigate(['about'])
+}
 }

@@ -2,7 +2,7 @@
     <div class="flex-row-100">
         <div class="flex-row center">
             <div class="flex-row-60">
-                <input type="text" placeholder="Search Bird Here...." class="searchBar" [(ngModel)]="searchVal">
+                <input type="text" placeholder="Search Bird Here...." class="searchBar" rainbow [(ngModel)]="searchVal">
                 <button mat-raised-button class="btn ml10 p10" style="background: #c0caff;" (click)="save()">Save</button>
             </div>
         </div>
@@ -12,7 +12,7 @@
             <ng-container *ngFor="let bird of birdsArray | filterPipe:searchVal;let i = index;">
                 <div class="flex-row-20 m20 mr5">
                     <div class="flex-row">
-                        <mat-card class="box">
+                        <mat-card class="box" cardClick>
                             <mat-card-header>
                                 <mat-card-title>{{bird?.title}}</mat-card-title>
                                 <mat-card-subtitle>{{bird?.subtitle}}</mat-card-subtitle>

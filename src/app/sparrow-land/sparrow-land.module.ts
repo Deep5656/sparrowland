@@ -14,6 +14,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import { rxjsNav } from './about/rxjs-topnav/rxjsTopNav.component';
 import { fromEventComponent } from './about/rxjs-topnav/fromEvent/fromEvent.component';
+import { debounceComponent } from './about/rxjs-topnav/debounce/debounce.component';
+import { SubjectComponent } from './about/rxjs-topnav/subject/subject.component';
+import { Comp1Component } from './about/rxjs-topnav/subject/comp1/comp1.component';
+import { Comp2Component } from './about/rxjs-topnav/subject/comp2/comp2.component';
+
 
 const sparrowLandRoutes:Routes = [
   {path:'birds', data:{preload:true}, loadChildren: () => import('./birds/birds.module').then(m => m.BirdsModule)},
@@ -27,7 +32,11 @@ const sparrowLandRoutes:Routes = [
     ContactComponent,
     HomeComponent,
     rxjsNav,
-    fromEventComponent
+    fromEventComponent,
+    debounceComponent,
+    SubjectComponent,
+    Comp1Component,
+    Comp2Component
   ],
   imports: [
     CommonModule,

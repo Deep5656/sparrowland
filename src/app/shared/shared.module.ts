@@ -10,13 +10,17 @@ import { SubjectService } from './services/subject.service';
 import { customPreLoadService } from './services/custom_preload.service';
 import { shortTxt } from './pipes/shortTxt.pipe';
 import { filterPipe } from './pipes/filter.pipe';
+import { rainbowDirective } from './directives/rainbow.directive';
+import { cardclickDirective } from './directives/cardclik.directive';
 
 
 @NgModule({
   declarations: [
     TopnavComponent,
     shortTxt,
-    filterPipe
+    filterPipe,
+    rainbowDirective,
+    cardclickDirective
   ],
   imports: [
     CommonModule,
@@ -33,7 +37,9 @@ import { filterPipe } from './pipes/filter.pipe';
   exports: [
     TopnavComponent,
     shortTxt,
-    filterPipe
+    filterPipe,
+    rainbowDirective,
+    cardclickDirective
     ]
 })
 export class SharedModule { 
