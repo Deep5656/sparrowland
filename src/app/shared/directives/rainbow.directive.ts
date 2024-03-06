@@ -23,4 +23,6 @@ export class rainbowDirective{
         const colorPicker = Math.floor(Math.random() * this.possibleColors.length);
         this.color = this.border = this.possibleColors[colorPicker];
       }
+
+      
 }

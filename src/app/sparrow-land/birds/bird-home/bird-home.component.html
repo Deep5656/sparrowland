@@ -3,7 +3,8 @@
         <div class="flex-row center">
             <div class="flex-row-60">
                 <input type="text" placeholder="Search Bird Here...." class="searchBar" rainbow [(ngModel)]="searchVal">
-                <button mat-raised-button class="btn ml10 p10" style="background: #c0caff;" (click)="save()">Save</button>
+                <button mat-raised-button class="btn ml10 p10" style="background: #c0caff;"
+                    (click)="save()">Save</button>
             </div>
         </div>
     </div>
@@ -11,21 +12,25 @@
         <div class="flex-row" style="max-height: 90vh; overflow: scroll;">
             <ng-container *ngFor="let bird of birdsArray | filterPipe:searchVal;let i = index;">
                 <div class="flex-row-20 m20 mr5">
-                    <div class="flex-row">
+                    <div class="flex-row"  >
                         <mat-card class="box" cardClick>
                             <mat-card-header>
                                 <mat-card-title>{{bird?.title}}</mat-card-title>
-                                <mat-card-subtitle>{{bird?.subtitle}}</mat-card-subtitle>
+                                <mat-card-subtitle>{{bird?.subTitle}}</mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <p style="text-align: justify;">{{bird?.about | shortTxt:50}}</p>
+                                <p>{{bird?.about | shortTxt:80}}</p>
                             </mat-card-content>
-                            <button mat-flat-button class="fs12" style="position:absolute;bottom:0px;left:0px" (click)="update(i)">update</button>
-                            <button mat-flat-button class="fs12" style="position:absolute;bottom:0px;left:60px;width:10px" (click)="Like(i)">Like</button>
-                            <button mat-flat-button class="fs12" style="position:absolute;bottom:0px;right:0px" (click)="remove(i)">Remove</button>
+
+                            <button mat-flat-button class="fs12 updateBtn" style="background-color: transparent;" (click)="update(i)">update</button>
+                            <button mat-flat-button class="fs12 removeBtn" style="background-color: transparent;" (click)="remove(i)">Remove</button>
+
                         </mat-card>
                     </div>
                 </div>
+                <ng-container *ngIf="birdsArray.length == 0">
+                    <p>No Content to show</p>
+                </ng-container>
             </ng-container>
         </div>
     </div>

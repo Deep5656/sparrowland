@@ -1,7 +1,12 @@
 $component: 'bird-home';
 @import '../../../shared/common-css/common-css.scss';
 
-
+@mixin Btn(){
+    position:absolute;
+    bottom: 6px;
+    margin: 0px;
+    padding: 0px;
+}
 
 .btn {
     width: 15%;
@@ -37,6 +42,16 @@ $component: 'bird-home';
         border-color: white;
     }
 
+}
+
+.updateBtn{
+    @include Btn();
+    left: 0px;
+}
+
+.removeBtn{
+    @include Btn();
+    right: 0px;
 }
 
 .file{

@@ -18,6 +18,7 @@ import { debounceComponent } from './about/rxjs-topnav/debounce/debounce.compone
 import { SubjectComponent } from './about/rxjs-topnav/subject/subject.component';
 import { Comp1Component } from './about/rxjs-topnav/subject/comp1/comp1.component';
 import { Comp2Component } from './about/rxjs-topnav/subject/comp2/comp2.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const sparrowLandRoutes:Routes = [
@@ -48,6 +49,7 @@ const sparrowLandRoutes:Routes = [
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
+    HttpClientModule,
     RouterModule.forChild(sparrowLandRoutes),
   ],
   exports:[
