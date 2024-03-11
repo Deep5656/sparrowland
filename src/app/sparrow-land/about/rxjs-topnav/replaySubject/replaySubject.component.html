@@ -1,0 +1,55 @@
+<div class="flex-row m20">
+    <div class="flex-row-100">
+        <div class="flex-row">
+            <h1>Replay Subject</h1>
+        </div>
+    </div>
+</div>
+<div class="flex-row m20">
+    <div class="flex-row-100">
+        <div class="flex-col">
+            <h3>Add Video</h3>
+            <div class="flex-row center">
+                <input matInput class="input">
+                <button mat-stroked-button class="flat-btn ml20">Add</button>
+            </div>
+        </div>
+    </div>
+    <div class="flex-row-100 center">
+        <div class="flex-row-30 m10">
+            <div class="flex-row border">
+                <h3>user -01</h3>
+                <div class="flex-col">
+                    <hr>
+                    <ul *ngFor="let item of userList1">
+                        <li>video1</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="flex-row-30 m10">
+            <div class="flex-row border">
+                <h3>user -02</h3>
+                <div class="flex-col">
+                    <hr>
+                    <ul *ngFor="let item of userList2">
+                        <li>Video1</li>
+                    </ul>
+                    <button mat-flat-button class="flat-btn">Subscribe Me</button>
+                </div>
+            </div>
+        </div>
+        <div class="flex-row-30 m10">
+            <div class="flex-row border">
+                <h3>user -03</h3>
+                <div class="flex-col">
+                    <hr>
+                    <ul *ngFor="let item of userList3">
+                        <li> video1</li>
+                    </ul>
+                    <button mat-flat-button class="flat-btn">Subscribe Me</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

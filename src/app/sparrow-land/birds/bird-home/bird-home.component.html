@@ -3,26 +3,27 @@
         <div class="flex-row center">
             <div class="flex-row-60">
                 <input type="text" placeholder="Search Bird Here...." class="searchBar" rainbow [(ngModel)]="searchVal">
-                <button mat-raised-button class="btn ml10 p10" style="background: #c0caff;"
-                    (click)="save()">Save</button>
+                <!-- <button mat-raised-button class="btn ml10 p10" style="background: #c0caff;"
+                    (click)="save()">Save</button> -->
             </div>
         </div>
     </div>
+    
     <div class="flex-row-80">
         <div class="flex-row" style="max-height: 90vh; overflow: scroll;">
             <ng-container *ngFor="let bird of birdsArray | filterPipe:searchVal;let i = index;">
                 <div class="flex-row-20 m20 mr5">
                     <div class="flex-row"  >
-                        <mat-card class="box" cardClick>
+                        <mat-card class="box" cardClick [cardId]="i">
                             <mat-card-header>
                                 <mat-card-title>{{bird?.title}}</mat-card-title>
                                 <mat-card-subtitle>{{bird?.subTitle}}</mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <p>{{bird?.about | shortTxt:80}}</p>
+                                <p>{{bird?.about | shortTxt:80}} <span class="fs10 color" (click)="showMore(i)">Show more</span></p>
                             </mat-card-content>
 
-                            <button mat-flat-button class="fs12 updateBtn" style="background-color: transparent;" (click)="update(i)">update</button>
+                            <button mat-flat-button class="fs12 updateBtn" style="background-color: transparent;" (click)="cardUpdateBtn(i)">update</button>
                             <button mat-flat-button class="fs12 removeBtn" style="background-color: transparent;" (click)="remove(i)">Remove</button>
 
                         </mat-card>
@@ -39,11 +40,11 @@
             <h3 class="fs12">Add New Bird</h3>
             <mat-form-field>
                 <mat-label class="fs12">Bird Title</mat-label>
-                <input type="text" matInput formControlName="title">
+                <input type="text" matInput formControlName="title" maxlength="16">
             </mat-form-field>
             <mat-form-field>
                 <mat-label class="fs12">Bird SubTitle</mat-label>
-                <input type="text" matInput formControlName="subtitle">
+                <input type="text" matInput formControlName="subTitle" maxlength="24">
             </mat-form-field>
             <div class=" flex-col file">
                 <label class="fs12">Bird Image</label>
@@ -51,11 +52,11 @@
             </div>
             <mat-form-field>
                 <mat-label class="fs12">About Bird</mat-label>
-                <textarea matInput formControlName="about"></textarea>
+                <textarea matInput formControlName="about" maxlength="100000"></textarea>
             </mat-form-field>
 
             <button mat-flat-button class="btn" *ngIf="!this.Autoupdate" (click)="add()">Add</button>
-            <button mat-flat-button class="btn" *ngIf="this.Autoupdate" (click)="updateVal()">Update</button>
+            <button mat-flat-button class="btn" *ngIf="this.Autoupdate" (click)="updateBtn()">Update</button>
         </div>
     </div>
 </div>

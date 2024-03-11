@@ -1,0 +1,33 @@
+<div>
+    <div class="flex-row">
+        <div class="flex-row-100">
+            <div class="flex-row popHeader">
+                <div class="flex-row-95">
+                    <marquee behavior="slide" direction="" loop="1">
+                        <p style="position: relative;top:5px;color:red" class="fs12"><span style="font-weight: lighter;">{{birdData.title}}</span></p>
+                    </marquee>
+                </div>
+                <div class="flex-row-5">
+                    <mat-icon mat-dialog-close class="fright cursor closeBtn" (click)="close()">X</mat-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-row center">
+        <div class="flex-row-90">
+            <div class="flex-row">
+                <!-- <h1>{{birdData | json}}</h1> -->
+                <div class="flex-row-40">
+                    <div class="flex-row border m10">
+                        <h1 class="fs12">{{birdData.title}}</h1>
+                    </div>
+                </div>
+                <div class="flex-row-60">
+                    <div class="flex-row border m10">
+                        <h1 class="fs12">{{birdData.about}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+
+@Component({
+  selector: 'app-bird-dialog',
+  templateUrl: './bird-dialog.component.html',
+  styleUrls: ['./bird-dialog.component.scss']
+})
+export class BirdDialogComponent implements OnInit{
+
+  birdData:any;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialog:MatDialog){}
+  ngOnInit(): void {
+    this.birdData = this.data.birdArray[this.data.cardId];
+    console.log("birdData",this.birdData);
+    // console.log(this.data);
+    
+  }
+
+  close(){
+    this.dialog.closeAll();
+  }
+
+
+}

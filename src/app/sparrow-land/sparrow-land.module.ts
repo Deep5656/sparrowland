@@ -19,6 +19,7 @@ import { SubjectComponent } from './about/rxjs-topnav/subject/subject.component'
 import { Comp1Component } from './about/rxjs-topnav/subject/comp1/comp1.component';
 import { Comp2Component } from './about/rxjs-topnav/subject/comp2/comp2.component';
 import { HttpClientModule } from '@angular/common/http';
+import { replaySubjectComponent } from './about/rxjs-topnav/replaySubject/replaySubject.component';
 
 
 const sparrowLandRoutes:Routes = [
@@ -37,7 +38,8 @@ const sparrowLandRoutes:Routes = [
     debounceComponent,
     SubjectComponent,
     Comp1Component,
-    Comp2Component
+    Comp2Component,
+    replaySubjectComponent
   ],
   imports: [
     CommonModule,

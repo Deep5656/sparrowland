@@ -19,4 +19,8 @@ export class DataService {
     updateBird(payload:any){
         return this.http.post('http://localhost:8080/bird/rest/v1/us/updateBird',payload);
     }
+
+    removeBird(payload:any){
+        return this.http.post('http://localhost:8080/bird/rest/v1/us/deleteBird',payload);
+    }
 }

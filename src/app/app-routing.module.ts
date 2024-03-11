@@ -8,13 +8,15 @@ import { rxjsNav } from './sparrow-land/about/rxjs-topnav/rxjsTopNav.component';
 import { fromEventComponent } from './sparrow-land/about/rxjs-topnav/fromEvent/fromEvent.component';
 import { debounceComponent } from './sparrow-land/about/rxjs-topnav/debounce/debounce.component';
 import { SubjectComponent } from './sparrow-land/about/rxjs-topnav/subject/subject.component';
+import { replaySubjectComponent } from './sparrow-land/about/rxjs-topnav/replaySubject/replaySubject.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'about',component:AboutComponent,children:[
     {path:'formEvent',component:fromEventComponent},
     {path:'debounce',component:debounceComponent},
-    {path:'subject',component:SubjectComponent}
+    {path:'subject',component:SubjectComponent},
+    {path:'replaySubject',component:replaySubjectComponent},
   ]},
   {path:'contact',component:ContactComponent},
 ];

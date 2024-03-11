@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { fromEventComponent } from "./fromEvent/fromEvent.component";
 
 @Component({
     selector: 'rxjs-nav',
@@ -25,6 +24,9 @@ export class rxjsNav implements OnInit {
         }
         if (val == 'subject') {
             this.router.navigate(['about/subject']);
+        }
+        if (val == 'replaySubject') {
+            this.router.navigate(['about/replaySubject']);
         }
         this.dialog.closeAll();
     }

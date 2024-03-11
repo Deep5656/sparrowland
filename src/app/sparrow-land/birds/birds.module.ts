@@ -7,6 +7,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { BirdDialogComponent } from './bird-home/bird-dialog/bird-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -17,6 +19,7 @@ const birdRoute:Routes = [
 @NgModule({
     declarations: [
         BirdHomeComponent,
+        BirdDialogComponent,
     ],
     imports: [
         CommonModule,
@@ -25,6 +28,7 @@ const birdRoute:Routes = [
         FormsModule,
         ReactiveFormsModule,
         MatInputModule,
+        MatIconModule,
         RouterModule.forChild(birdRoute),
         SharedModule
     ]
