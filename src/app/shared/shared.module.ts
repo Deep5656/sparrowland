@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TopnavComponent } from './components/topnav/topnav.component';
+import { errorComponent } from './components/error/error.component';
+
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -12,6 +14,9 @@ import { shortTxt } from './pipes/shortTxt.pipe';
 import { filterPipe } from './pipes/filter.pipe';
 import { rainbowDirective } from './directives/rainbow.directive';
 import { cardclickDirective } from './directives/cardclik.directive';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/authGuard.service';
+
 
 
 @NgModule({
@@ -20,7 +25,8 @@ import { cardclickDirective } from './directives/cardclik.directive';
     shortTxt,
     filterPipe,
     rainbowDirective,
-    cardclickDirective
+    cardclickDirective,
+    errorComponent,
   ],
   imports: [
     CommonModule,
@@ -32,14 +38,17 @@ import { cardclickDirective } from './directives/cardclik.directive';
   providers:[
     SubjectService,
     DataService,
-    customPreLoadService
+    customPreLoadService,
+    AuthService,
+    AuthGuard
   ],
   exports: [
     TopnavComponent,
     shortTxt,
     filterPipe,
     rainbowDirective,
-    cardclickDirective
+    cardclickDirective,
+    errorComponent,
     ]
 })
 export class SharedModule { 

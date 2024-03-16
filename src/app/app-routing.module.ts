@@ -4,26 +4,33 @@ import { AboutComponent } from './sparrow-land/about/about.component';
 import { ContactComponent } from './sparrow-land/contact/contact.component';
 import { HomeComponent } from './sparrow-land/home/home.component';
 import { customPreLoadService } from './shared/services/custom_preload.service';
-import { rxjsNav } from './sparrow-land/about/rxjs-topnav/rxjsTopNav.component';
 import { fromEventComponent } from './sparrow-land/about/rxjs-topnav/fromEvent/fromEvent.component';
 import { debounceComponent } from './sparrow-land/about/rxjs-topnav/debounce/debounce.component';
 import { SubjectComponent } from './sparrow-land/about/rxjs-topnav/subject/subject.component';
 import { replaySubjectComponent } from './sparrow-land/about/rxjs-topnav/replaySubject/replaySubject.component';
+import { AuthGuard } from './shared/services/authGuard.service';
+import { errorComponent } from './shared/components/error/error.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
-  {path:'about',component:AboutComponent,children:[
+  {path:'about',component:AboutComponent,canActivateChild:[AuthGuard],children:[
     {path:'formEvent',component:fromEventComponent},
     {path:'debounce',component:debounceComponent},
     {path:'subject',component:SubjectComponent},
     {path:'replaySubject',component:replaySubjectComponent},
   ]},
   {path:'contact',component:ContactComponent},
+  {path:'birds', data:{preload:true}, loadChildren: () => import('./sparrow-land/birds/birds.module').then(m => m.BirdsModule)},
+  {path:'plants', loadChildren: () => import('./sparrow-land/plants/plants.module').then(m => m.PlantsModule)},
+  {path:'animal', data:{preload:true}, loadChildren: () => import('./sparrow-land/animals/animals.module').then(m => m.AnimalModule)},
+  {path:'not-found',component:errorComponent,data:{message:"Page Not Found"}},
+  {path:'**',redirectTo:'not-found'}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{
-    preloadingStrategy:customPreLoadService
+    preloadingStrategy:customPreLoadService,
+    useHash:true
   })],
   exports: [RouterModule]
 })

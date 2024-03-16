@@ -20,7 +20,7 @@
                                 <mat-card-subtitle>{{bird?.subTitle}}</mat-card-subtitle>
                             </mat-card-header>
                             <mat-card-content>
-                                <p>{{bird?.about | shortTxt:80}} <span class="fs10 color" (click)="showMore(i)">Show more</span></p>
+                                <p>{{bird?.about | shortTxt:75}} <span class="fs10 color" (click)="showMore(i)">Show more</span></p>
                             </mat-card-content>
 
                             <button mat-flat-button class="fs12 updateBtn" style="background-color: transparent;" (click)="cardUpdateBtn(i)">update</button>

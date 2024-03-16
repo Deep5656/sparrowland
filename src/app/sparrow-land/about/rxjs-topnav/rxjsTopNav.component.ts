@@ -14,6 +14,7 @@ export class rxjsNav implements OnInit {
     ngOnInit(): void {
 
     }
+    
 
     moveTo(val: any) {
         if (val == 'fromEvent') {
@@ -28,6 +29,10 @@ export class rxjsNav implements OnInit {
         if (val == 'replaySubject') {
             this.router.navigate(['about/replaySubject']);
         }
+        if (val == 'replaySubject') {
+            this.router.navigate(['about/replaySubject']);
+        }
+        
         this.dialog.closeAll();
     }
 

@@ -9,12 +9,13 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 export class ContactComponent implements OnInit {
 
   form: FormGroup = new FormGroup<any>({});
+  invalidUserNames:any[] = ['Aman','Deep'];
 
   constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef) { }
   ngOnInit(): void {
     this.form = this.fb.group({
       'userDetails': new FormGroup({
-        'firstName': new FormControl('', [Validators.required]),
+        'firstName': new FormControl('', [Validators.required,this.invalidNames.bind(this)]),
         'lastName': new FormControl('', [Validators.required]),
         'email': new FormControl('', [Validators.required, Validators.email]),
         'cityName': new FormControl('', [Validators.required]),
@@ -23,8 +24,6 @@ export class ContactComponent implements OnInit {
       'addComments': new FormArray([])
     })
   }
-
-
 
   addComments() {
     (this.form.get('addComments') as FormArray).push(new FormControl(''));
@@ -58,4 +57,10 @@ export class ContactComponent implements OnInit {
     return (this.form.get('addComments') as FormArray).controls;
   }
 
+  invalidNames(control:FormControl):{[s:string]:boolean}{
+    if(this.invalidUserNames.indexOf(control.value) != -1){
+      return {'Invalid userName':true};
+    }
+    return {};
+  }
 }

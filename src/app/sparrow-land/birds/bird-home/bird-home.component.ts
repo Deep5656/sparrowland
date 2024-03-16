@@ -112,6 +112,10 @@ export class BirdHomeComponent implements OnInit {
       },
       error: (err) => {
         console.log("remove err", err);
+      },
+      complete: () => {
+        console.log("completed");
+        
       }
     })
   }

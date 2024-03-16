@@ -20,13 +20,15 @@ import { Comp1Component } from './about/rxjs-topnav/subject/comp1/comp1.componen
 import { Comp2Component } from './about/rxjs-topnav/subject/comp2/comp2.component';
 import { HttpClientModule } from '@angular/common/http';
 import { replaySubjectComponent } from './about/rxjs-topnav/replaySubject/replaySubject.component';
+import { AuthGuard } from '../shared/services/authGuard.service';
+import { FormsComponent } from './about/rxjs-topnav/forms/forms.component';
 
 
-const sparrowLandRoutes:Routes = [
-  {path:'birds', data:{preload:true}, loadChildren: () => import('./birds/birds.module').then(m => m.BirdsModule)},
-  {path:'plants', loadChildren: () => import('./plants/plants.module').then(m => m.PlantsModule)},
-  {path:'animal', data:{preload:true}, loadChildren: () => import('./animals/animals.module').then(m => m.AnimalModule)}
-];
+// const sparrowLandRoutes:Routes = [
+//   {path:'birds', data:{preload:true}, loadChildren: () => import('./birds/birds.module').then(m => m.BirdsModule)},
+//   {path:'plants', loadChildren: () => import('./plants/plants.module').then(m => m.PlantsModule)},
+//   {path:'animal', data:{preload:true}, loadChildren: () => import('./animals/animals.module').then(m => m.AnimalModule)}
+// ];
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ const sparrowLandRoutes:Routes = [
     SubjectComponent,
     Comp1Component,
     Comp2Component,
-    replaySubjectComponent
+    replaySubjectComponent,
+    FormsComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +55,8 @@ const sparrowLandRoutes:Routes = [
     MatDialogModule,
     MatIconModule,
     HttpClientModule,
-    RouterModule.forChild(sparrowLandRoutes),
+    RouterModule
+    // RouterModule.forChild(sparrowLandRoutes),
   ],
   exports:[
     RouterModule
