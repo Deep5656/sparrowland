@@ -12,7 +12,8 @@ export class BirdDialogComponent implements OnInit{
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialog:MatDialog){}
   ngOnInit(): void {
-    this.birdData = this.data.birdArray[this.data.cardId];
+    let cardId = this.data.cardId
+    this.birdData = this.data.birdArray[cardId];
     console.log("birdData",this.birdData);
     // console.log(this.data);
     

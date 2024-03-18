@@ -10,14 +10,17 @@ import { SubjectComponent } from './sparrow-land/about/rxjs-topnav/subject/subje
 import { replaySubjectComponent } from './sparrow-land/about/rxjs-topnav/replaySubject/replaySubject.component';
 import { AuthGuard } from './shared/services/authGuard.service';
 import { errorComponent } from './shared/components/error/error.component';
+import { SignalComponent } from './sparrow-land/about/rxjs-topnav/signals/signals.component';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
-  {path:'about',component:AboutComponent,canActivateChild:[AuthGuard],children:[
+  // ,canActivateChild:[AuthGuard]
+  {path:'about',component:AboutComponent,children:[
     {path:'formEvent',component:fromEventComponent},
     {path:'debounce',component:debounceComponent},
     {path:'subject',component:SubjectComponent},
     {path:'replaySubject',component:replaySubjectComponent},
+    {path:'signals',component:SignalComponent},
   ]},
   {path:'contact',component:ContactComponent},
   {path:'birds', data:{preload:true}, loadChildren: () => import('./sparrow-land/birds/birds.module').then(m => m.BirdsModule)},

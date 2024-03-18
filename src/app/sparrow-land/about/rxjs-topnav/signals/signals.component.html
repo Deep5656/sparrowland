@@ -1,0 +1,14 @@
+<h1>Default AutoMatic Change Detection</h1>
+
+<div>
+    <p>Counters: {{counter()}}</p>
+    <div>
+        <button (click)="decrement()">Decrement</button>
+        <button (click)="increment()">Increment</button>
+    </div>
+</div>
+
+<h2>Action log</h2>
+<ol>
+    <li *ngFor="let action of actions()">{{action}}</li>
+</ol>

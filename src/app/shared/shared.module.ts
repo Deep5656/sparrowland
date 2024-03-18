@@ -16,6 +16,9 @@ import { rainbowDirective } from './directives/rainbow.directive';
 import { cardclickDirective } from './directives/cardclik.directive';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/authGuard.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth-intercepter.service';
+import { confirmDeleteComponent } from './components/confirmDelete/confirmDelete.component';
 
 
 
@@ -27,6 +30,7 @@ import { AuthGuard } from './services/authGuard.service';
     rainbowDirective,
     cardclickDirective,
     errorComponent,
+    confirmDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +44,12 @@ import { AuthGuard } from './services/authGuard.service';
     DataService,
     customPreLoadService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    }
   ],
   exports: [
     TopnavComponent,
@@ -49,7 +58,9 @@ import { AuthGuard } from './services/authGuard.service';
     rainbowDirective,
     cardclickDirective,
     errorComponent,
-    ]
+    confirmDeleteComponent
+    ],
+  
 })
 export class SharedModule { 
   constructor(){

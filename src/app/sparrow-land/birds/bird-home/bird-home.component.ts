@@ -1,8 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/shared/services/data.service';
 import { BirdDialogComponent } from './bird-dialog/bird-dialog.component';
+import { confirmDeleteComponent } from 'src/app/shared/components/confirmDelete/confirmDelete.component';
+import { ViewContainer } from 'src/app/shared/directives/viewContainer.directive';
 
 @Component({
   selector: 'app-bird-home',
@@ -22,10 +24,12 @@ export class BirdHomeComponent implements OnInit {
   removePayload: any[] = [];
   title: any = '';
   Autoupdate: any = false;
+  @ViewChild(ViewContainer)container: ViewContainer;
 
   constructor(private fb: FormBuilder,
-     private _dataService: DataService, 
-     private dialog: MatDialog) { }
+    private _dataService: DataService,
+    private dialog: MatDialog,
+    private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -34,6 +38,7 @@ export class BirdHomeComponent implements OnInit {
       'about': new FormControl('', [Validators.required])
     });
     this.getAllBirds();
+
   }
 
   getAllBirds() {
@@ -52,10 +57,24 @@ export class BirdHomeComponent implements OnInit {
 
   remove(i: any) {
     console.log("i", i);
+    this.showConfirmDelete();
     this.removeBirdsArray.push(this.birdsArray[i]);
     this.removeBird(this.birdsArray[i]);
     this.birdsArray.splice(i, 1);
 
+  }
+
+  showConfirmDelete() {
+    //Create an instance of confirmDelete component
+    const confirmDeleteComponentFactory = this.componentFactoryResolver.resolveComponentFactory(confirmDeleteComponent);
+    // if (this.container) {
+      const containerViewRef = this.container?.viewContainer;
+      containerViewRef.clear();
+      //Rendering the component in the DOM
+      containerViewRef.createComponent(confirmDeleteComponentFactory);
+    // }else{
+      // console.log("ViewContainerRef is not initialized.");
+    // }
   }
 
   cid: any;
@@ -65,7 +84,7 @@ export class BirdHomeComponent implements OnInit {
     this.form.get('title')?.patchValue(this.birdsArray[i]?.title);
     this.form.get('subTitle')?.patchValue(this.birdsArray[i]?.subTitle);
     this.form.get('about')?.patchValue(this.birdsArray[i]?.about);
-    console.log("bird to update",this.birdsArray[i]);
+    console.log("bird to update", this.birdsArray[i]);
   }
 
   updateBtn() {
@@ -115,22 +134,19 @@ export class BirdHomeComponent implements OnInit {
       },
       complete: () => {
         console.log("completed");
-        
       }
     })
   }
 
-  cardId:any;
-  birdArray:any;
-  showMore(index:any){
+  showMore(index: any) {
     const dialog = this.dialog.open(BirdDialogComponent, {
       width: '70%',
       height: '90%',
       data: {
-          'birdArray':this.birdsArray,
-          'cardId':index
+        'birdArray': this.birdsArray,
+        'cardId': index
       }
-  })
+    })
   }
 
 }

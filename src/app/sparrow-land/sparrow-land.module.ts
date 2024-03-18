@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { replaySubjectComponent } from './about/rxjs-topnav/replaySubject/replaySubject.component';
 import { AuthGuard } from '../shared/services/authGuard.service';
 import { FormsComponent } from './about/rxjs-topnav/forms/forms.component';
+import { SignalComponent } from './about/rxjs-topnav/signals/signals.component';
 
 
 // const sparrowLandRoutes:Routes = [
@@ -42,7 +43,8 @@ import { FormsComponent } from './about/rxjs-topnav/forms/forms.component';
     Comp1Component,
     Comp2Component,
     replaySubjectComponent,
-    FormsComponent
+    FormsComponent,
+    SignalComponent
   ],
   imports: [
     CommonModule,

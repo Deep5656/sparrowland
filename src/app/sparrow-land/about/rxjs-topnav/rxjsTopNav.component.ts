@@ -32,6 +32,9 @@ export class rxjsNav implements OnInit {
         if (val == 'replaySubject') {
             this.router.navigate(['about/replaySubject']);
         }
+        if (val == 'signals') {
+            this.router.navigate(['about/signals']);
+        }
         
         this.dialog.closeAll();
     }

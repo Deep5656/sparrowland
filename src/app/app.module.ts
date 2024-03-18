@@ -19,7 +19,8 @@ import { SparrowLandModule } from './sparrow-land/sparrow-land.module';
     SparrowLandModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule {
   constructor(){
