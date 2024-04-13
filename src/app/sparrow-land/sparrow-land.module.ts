@@ -23,6 +23,7 @@ import { replaySubjectComponent } from './about/rxjs-topnav/replaySubject/replay
 import { AuthGuard } from '../shared/services/authGuard.service';
 import { FormsComponent } from './about/rxjs-topnav/forms/forms.component';
 import { SignalComponent } from './about/rxjs-topnav/signals/signals.component';
+import { MultiverseComponent } from './about/rxjs-topnav/multiverse/multiverse.component';
 
 
 // const sparrowLandRoutes:Routes = [
@@ -44,7 +45,8 @@ import { SignalComponent } from './about/rxjs-topnav/signals/signals.component';
     Comp2Component,
     replaySubjectComponent,
     FormsComponent,
-    SignalComponent
+    SignalComponent,
+    MultiverseComponent
   ],
   imports: [
     CommonModule,

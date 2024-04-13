@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SparrowLandModule } from './sparrow-land/sparrow-land.module';
+import { StoreModule } from '@ngrx/store';
+import { counterReducre } from './sparrow-land/store/counter.reducer';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,9 @@ import { SparrowLandModule } from './sparrow-land/sparrow-land.module';
     SharedModule,
     BrowserAnimationsModule,
     SparrowLandModule,
+    StoreModule.forRoot({
+      counter:counterReducre
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

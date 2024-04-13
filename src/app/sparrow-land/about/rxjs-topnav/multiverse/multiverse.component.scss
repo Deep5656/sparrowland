@@ -1,0 +1,10 @@
+$component:'multiverse';
+@import '../../../../shared/common-css/common-css.scss';
+
+.body{
+    .multiverse{
+        background-image: url('../../../../../assets/images/multiverse.jpg');
+        background-size: cover;
+        height: 100%;
+    }
+}

@@ -1,5 +1,4 @@
-<h1>Default AutoMatic Change Detection</h1>
-
+<h1>Default AutoMatic Change Detection vs Signal</h1>
 <div>
     <p>Counters: {{counter()}}</p>
     <div>
@@ -7,8 +6,18 @@
         <button (click)="increment()">Increment</button>
     </div>
 </div>
-
 <h2>Action log</h2>
 <ol>
     <li *ngFor="let action of actions()">{{action}}</li>
 </ol>
+
+
+<h1>NGRX Introduction</h1>
+<div>
+    <p>Counters: {{count$ | async}}</p>
+    <div>
+        <button (click)="Decrement()">Decrement</button>
+        <button (click)="Increment()">Increment</button>
+    </div>
+</div>
+
