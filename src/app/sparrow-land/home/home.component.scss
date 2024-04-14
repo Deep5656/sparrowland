@@ -40,6 +40,18 @@ $component: 'home';
 .prev{
     @include slider();
 }
+.animal{
+    @include slider();
+    top: 42%;
+}
+.birds{
+    @include slider();
+    top: 10%;
+}
+.plants{
+    @include slider();
+    top: 72%;
+}
 
 .next{
     @include slider();

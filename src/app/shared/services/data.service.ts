@@ -6,7 +6,8 @@ import { Injectable } from "@angular/core";
 })
 export class DataService {
 
-    baseURL:any = 'http://localhost:8080/bird/rest/v1/us';
+    port:number = 9090;
+    baseURL:any = `http://localhost:${this.port}/bird/rest/v1/us`;
 
     constructor(private http: HttpClient) { }
 

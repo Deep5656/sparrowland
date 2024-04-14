@@ -1,11 +1,34 @@
 <div class="flex-row">
     <div class="flex-row-100">
         <div class="flex-row slidder">
-            <img class="img" src="../../../assets/images/SL1.jpg" alt="">
-            <img class="img" src="../../../assets/images/SL2.jpg" alt="">
-            <img class="img" src="../../../assets/images/SL3.jpg" alt="">
+           
+            <ng-container *ngFor="let img of BirdImages">
+                <div class="flex-row" style="border: 2px solid white;width: 20%;height:30vh;">
+                    <img [src]="'../../../assets/images/' + img.src" [alt]="img.name">
+                </div>
+            </ng-container>
+            
         </div>
-        <a class="prev" (click)="prev()">&#10094;</a>
-        <a class="next" (click)="next()">&#10095;</a>
+        <div class="flex-row slidder">
+           
+            <ng-container *ngFor="let img of AnimalImages">
+                <div class="flex-row" style="border: 2px solid white;width: 20%;height: 30vh;">
+                    <img [src]="'../../../assets/images/' + img.src" [alt]="img.name">
+                </div>
+            </ng-container>
+            
+        </div>
+        <div class="flex-row slidder">
+           
+            <ng-container *ngFor="let img of PlantImages">
+                <div class="flex-row" style="border: 2px solid white;width: 20%;height: 31vh;">
+                    <img [src]="'../../../assets/images/' + img.src" [alt]="img.name">
+                </div>
+            </ng-container>
+            
+        </div>
+        <a class="birds" (click)="prev()">Birds</a>
+        <a class="animal" (click)="prev()">Animals</a>
+        <a class="plants" (click)="next()">Plants</a>
     </div>
 </div>

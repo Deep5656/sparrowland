@@ -10,6 +10,34 @@ import { DataService } from 'src/app/shared/services/data.service';
 })
 export class HomeComponent implements OnInit {
 
+  BirdImages:any = [
+    {src:'SL1.jpg',name:'img1'},
+    {src:'SL2.jpg',name:'img2'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+  ];
+  AnimalImages:any = [
+    {src:'SL1.jpg',name:'img1'},
+    {src:'SL2.jpg',name:'img2'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+  ];
+  PlantImages:any = [
+    {src:'SL1.jpg',name:'img1'},
+    {src:'SL2.jpg',name:'img2'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+    {src:'SL3.jpg',name:'img3'},
+  ];
+
   constructor(private _dataService:DataService){}
 
   ngOnInit(){
