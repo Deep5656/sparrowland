@@ -25,6 +25,8 @@ export class BirdHomeComponent implements OnInit {
   title: any = '';
   Autoupdate: any = false;
   @ViewChild(ViewContainer)container: ViewContainer;
+  selectedFile:any=null;
+  // displayImage:any;
 
   constructor(private fb: FormBuilder,
     private _dataService: DataService,
@@ -35,7 +37,8 @@ export class BirdHomeComponent implements OnInit {
     this.form = this.fb.group({
       'title': new FormControl('', [Validators.required]),
       'subTitle': new FormControl('', [Validators.required]),
-      'about': new FormControl('', [Validators.required])
+      'about': new FormControl('', [Validators.required]),
+      'image': new FormControl('',[Validators.required])
     });
     this.getAllBirds();
 
@@ -48,50 +51,61 @@ export class BirdHomeComponent implements OnInit {
     });
   }
 
+  onFileSelected(event:any){
+    this.selectedFile = event.target.files[0];
+    // this.displayImage = this.selectedFile.name;
+    console.log("this.selectedFile",this.selectedFile);
+    
+  }
   add() {
+    this.form.value['image'] = this.selectedFile;
     this.birdsArray.push(this.form.value);
     console.log("this.form.value", this.form.value);
     this.createBird(this.form.value);
-    this.form.reset();
+    this.form.reset();  
   }
 
   remove(i: any) {
     console.log("i", i);
-    this.showConfirmDelete();
+    // this.showConfirmDelete();
     this.removeBirdsArray.push(this.birdsArray[i]);
     this.removeBird(this.birdsArray[i]);
     this.birdsArray.splice(i, 1);
 
   }
 
-  showConfirmDelete() {
-    //Create an instance of confirmDelete component
-    const confirmDeleteComponentFactory = this.componentFactoryResolver.resolveComponentFactory(confirmDeleteComponent);
-    // if (this.container) {
-      const containerViewRef = this.container?.viewContainer;
-      containerViewRef.clear();
-      //Rendering the component in the DOM
-      containerViewRef.createComponent(confirmDeleteComponentFactory);
-    // }else{
-      // console.log("ViewContainerRef is not initialized.");
-    // }
-  }
+  // showConfirmDelete() {
+  //   //Create an instance of confirmDelete component
+  //   const confirmDeleteComponentFactory = this.componentFactoryResolver.resolveComponentFactory(confirmDeleteComponent);
+  //   // if (this.container) {
+  //     const containerViewRef = this.container?.viewContainer;
+  //     containerViewRef.clear();
+  //     //Rendering the component in the DOM
+  //     containerViewRef.createComponent(confirmDeleteComponentFactory);
+  //   // }else{
+  //     // console.log("ViewContainerRef is not initialized.");
+  //   // }
+  // }
 
   cid: any;
   cardUpdateBtn(i: any) {
     this.Autoupdate = true;
     this.cid = i;
+    this.form['id'] = this.birdsArray[i].id;
     this.form.get('title')?.patchValue(this.birdsArray[i]?.title);
     this.form.get('subTitle')?.patchValue(this.birdsArray[i]?.subTitle);
     this.form.get('about')?.patchValue(this.birdsArray[i]?.about);
     console.log("bird to update", this.birdsArray[i]);
+    
   }
 
   updateBtn() {
     this.Autoupdate = false;
+    this.birdsArray[this.cid].id = this.form['id'];
     this.birdsArray[this.cid].title = this.form.get('title')?.value;
     this.birdsArray[this.cid].subTitle = this.form.get('subTitle')?.value;
     this.birdsArray[this.cid].about = this.form.get('about')?.value;
+    this.birdsArray[this.cid].image = this.selectedFile;
     console.log("update bird", this.birdsArray[this.cid]);
     this.updateBird(this.birdsArray[this.cid]);
     this.form.reset();
