@@ -15,7 +15,6 @@ export class BirdDialogComponent implements OnInit{
     let cardId = this.data.cardId
     this.birdData = this.data.birdArray[cardId];
     console.log("birdData",this.birdData);
-    // console.log(this.data);
     
   }
 

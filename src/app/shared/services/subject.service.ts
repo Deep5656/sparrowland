@@ -8,6 +8,8 @@ export class SubjectService implements OnInit {
 
     userName = new BehaviorSubject<any>('Aman');
 
+    role = new BehaviorSubject<any>('Normal');
+
     constructor() {
         console.log('subject service loaded');
     }

@@ -5,6 +5,9 @@ import { DataService } from 'src/app/shared/services/data.service';
 import { BirdDialogComponent } from './bird-dialog/bird-dialog.component';
 import { confirmDeleteComponent } from 'src/app/shared/components/confirmDelete/confirmDelete.component';
 import { ViewContainer } from 'src/app/shared/directives/viewContainer.directive';
+// import swal from 'sweetalert';
+import swal from 'sweetalert2'
+import { SubjectService } from 'src/app/shared/services/subject.service';
 
 @Component({
   selector: 'app-bird-home',
@@ -24,13 +27,16 @@ export class BirdHomeComponent implements OnInit {
   removePayload: any[] = [];
   title: any = '';
   Autoupdate: any = false;
-  @ViewChild(ViewContainer)container: ViewContainer;
-  selectedFile:any=null;
+  @ViewChild(ViewContainer) container: ViewContainer;
+  selectedFile: any = null;
+  role:any;
   // displayImage:any;
+  
 
   constructor(private fb: FormBuilder,
     private _dataService: DataService,
     private dialog: MatDialog,
+    private _subjectService:SubjectService,
     private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
@@ -38,9 +44,15 @@ export class BirdHomeComponent implements OnInit {
       'title': new FormControl('', [Validators.required]),
       'subTitle': new FormControl('', [Validators.required]),
       'about': new FormControl('', [Validators.required]),
-      'image': new FormControl('',[Validators.required])
+      'image': new FormControl('', [Validators.required])
     });
     this.getAllBirds();
+
+    this._subjectService.role.subscribe((res)=>{
+      this.role = res;
+      console.log("bird comp role",this.role);
+      
+    })
 
   }
 
@@ -51,26 +63,41 @@ export class BirdHomeComponent implements OnInit {
     });
   }
 
-  onFileSelected(event:any){
+  onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     // this.displayImage = this.selectedFile.name;
-    console.log("this.selectedFile",this.selectedFile);
-    
+    console.log("this.selectedFile", this.selectedFile);
+
   }
   add() {
     this.form.value['image'] = this.selectedFile;
     this.birdsArray.push(this.form.value);
     console.log("this.form.value", this.form.value);
     this.createBird(this.form.value);
-    this.form.reset();  
+    this.form.reset();
   }
 
   remove(i: any) {
-    console.log("i", i);
-    // this.showConfirmDelete();
-    this.removeBirdsArray.push(this.birdsArray[i]);
-    this.removeBird(this.birdsArray[i]);
-    this.birdsArray.splice(i, 1);
+    console.log("i", i);  
+    swal.fire({
+      title: "Are you sure?",
+      text: "Are you sure that you want to Remove this Bird?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.removeBirdsArray.push(this.birdsArray[i]);
+        this.removeBird(this.birdsArray[i]);
+        this.birdsArray.splice(i, 1);
+        swal.fire("Deleted!", "Your Bird has been Removed!", "success");
+      } else if (result.dismiss === swal.DismissReason.cancel) {
+        swal.fire("Cancelled", "Your Bird is safe :)", "error");
+      }
+    });
+    
+  
 
   }
 
@@ -96,7 +123,7 @@ export class BirdHomeComponent implements OnInit {
     this.form.get('subTitle')?.patchValue(this.birdsArray[i]?.subTitle);
     this.form.get('about')?.patchValue(this.birdsArray[i]?.about);
     console.log("bird to update", this.birdsArray[i]);
-    
+
   }
 
   updateBtn() {
@@ -158,9 +185,17 @@ export class BirdHomeComponent implements OnInit {
       height: '90%',
       data: {
         'birdArray': this.birdsArray,
-        'cardId': index
+        'cardId': index,
       }
     })
+  }
+
+  Admin(role:any){
+    if(role == 'Admin'){
+      this.role = 'Normal';
+    }else{
+      this.role = 'Admin';
+    }
   }
 
 }

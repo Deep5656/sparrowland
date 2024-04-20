@@ -6,10 +6,17 @@
                 <!-- <button mat-raised-button class="btn ml10 p10" style="background: #c0caff;"
                     (click)="save()">Save</button> -->
             </div>
+            <div *ngIf="role == 'Normal'">
+                <button (click)="Admin('Normal')">Normal</button>
+            </div>
+            <div *ngIf="role == 'Admin'">
+                <button (click)="Admin('Admin')">Admin</button>
+            </div>
+        
         </div>
     </div>
 
-    <div class="flex-row-80">
+    <div class="flex-row-80" [ngClass]="{'flex-row-80': role === 'Admin','flex-row-100': role === 'Normal'}">
         <div class="flex-row" style="max-height: 90vh; overflow: scroll;">
             <ng-container *ngFor="let bird of birdsArray | filterPipe:searchVal;let i = index;">
                 <div class="flex-row-20 m20 mr5">
@@ -22,7 +29,7 @@
                             </mat-card-header>
 
                             <div>
-                                <img  class="image" [src]="'data:image/png;base64,'+bird?.image" alt="new img">
+                                <img class="image" [src]="'data:image/png;base64,'+bird?.image" alt="new img">
 
                             </div>
                             <mat-card-content>
@@ -30,11 +37,14 @@
                                 <p>{{bird?.about | shortTxt:75}} <span class="fs10 color" (click)="showMore(i)">Show
                                         more</span></p>
                             </mat-card-content>
+                            <div *ngIf="role == 'Admin'">
+                                <button mat-flat-button class="fs12 updateBtn" style="background-color: transparent;"
+                                    (click)="cardUpdateBtn(i)">update</button>
+                                <button mat-flat-button class="fs12 removeBtn" style="background-color: transparent;"
+                                    (click)="remove(i)">Remove</button>
+                            </div>
+                            
 
-                            <button mat-flat-button class="fs12 updateBtn" style="background-color: transparent;"
-                                (click)="cardUpdateBtn(i)">update</button>
-                            <button mat-flat-button class="fs12 removeBtn" style="background-color: transparent;"
-                                (click)="remove(i)">Remove</button>
 
                         </mat-card>
                     </div>
@@ -47,7 +57,7 @@
             </ng-container>
         </div>
     </div>
-    <div class="flex-row-20">
+    <div class="flex-row-20" *ngIf="role == 'Admin'">
         <div class="flex-col center mt20" [formGroup]="form" style="border-left: 1px solid black;">
             <h3 class="fs12">Add New Bird</h3>
             <mat-form-field>
@@ -60,7 +70,7 @@
             </mat-form-field>
             <div class=" flex-col file">
                 <label class="fs12">Bird Image</label>
-                <input style="width: 200px;"  formControlName="image" type="file" (change)="onFileSelected($event)">
+                <input style="width: 200px;" formControlName="image" type="file" (change)="onFileSelected($event)">
             </div>
             <mat-form-field>
                 <mat-label class="fs12">About Bird</mat-label>
