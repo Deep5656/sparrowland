@@ -10,6 +10,8 @@ export class SubjectService implements OnInit {
 
     role = new BehaviorSubject<any>('Normal');
 
+    isHovering = new BehaviorSubject<any>(false);
+
     constructor() {
         console.log('subject service loaded');
     }

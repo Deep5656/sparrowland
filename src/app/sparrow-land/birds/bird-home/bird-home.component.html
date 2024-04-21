@@ -7,12 +7,17 @@
                     (click)="save()">Save</button> -->
             </div>
             <div *ngIf="role == 'Normal'">
-                <button (click)="Admin('Normal')">Normal</button>
+                <div class="flex-row">
+                    <button (click)="Admin('Normal')">Normal</button>
+                    <div class="dot mt5 ml10"></div>
+                </div>
             </div>
             <div *ngIf="role == 'Admin'">
-                <button (click)="Admin('Admin')">Admin</button>
+                <div class="flex-row">
+                    <button (click)="Admin('Admin')">Admin</button>
+                    <div class="dot mt5 ml10"></div>
+                </div>
             </div>
-        
         </div>
     </div>
 
@@ -22,16 +27,15 @@
                 <div class="flex-row-20 m20 mr5">
                     <div class="flex-row">
                         <mat-card class="box" cardClick [cardId]="i">
-                            <mat-card-header>
-                                <mat-card-title>{{bird?.title}}</mat-card-title>
-                                <mat-card-subtitle>{{bird?.subTitle}}</mat-card-subtitle>
-
-                            </mat-card-header>
-
-                            <div>
+                            <div style="position: relative; display: inline-block;">
                                 <img class="image" [src]="'data:image/png;base64,'+bird?.image" alt="new img">
-
-                            </div>
+                                <div style="position: absolute; top: 0%; left: 2%; color: white;">
+                                  <mat-card-header>
+                                    <mat-card-title>{{bird?.title}}</mat-card-title>
+                                    <mat-card-subtitle>{{bird?.subTitle}}</mat-card-subtitle>
+                                </mat-card-header>
+                                </div>
+                              </div>
                             <mat-card-content>
 
                                 <p>{{bird?.about | shortTxt:75}} <span class="fs10 color" (click)="showMore(i)">Show
@@ -43,7 +47,7 @@
                                 <button mat-flat-button class="fs12 removeBtn" style="background-color: transparent;"
                                     (click)="remove(i)">Remove</button>
                             </div>
-                            
+
 
 
                         </mat-card>

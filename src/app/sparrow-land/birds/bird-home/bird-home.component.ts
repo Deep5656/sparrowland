@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, HostListener, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/app/shared/services/data.service';
@@ -101,18 +101,7 @@ export class BirdHomeComponent implements OnInit {
 
   }
 
-  // showConfirmDelete() {
-  //   //Create an instance of confirmDelete component
-  //   const confirmDeleteComponentFactory = this.componentFactoryResolver.resolveComponentFactory(confirmDeleteComponent);
-  //   // if (this.container) {
-  //     const containerViewRef = this.container?.viewContainer;
-  //     containerViewRef.clear();
-  //     //Rendering the component in the DOM
-  //     containerViewRef.createComponent(confirmDeleteComponentFactory);
-  //   // }else{
-  //     // console.log("ViewContainerRef is not initialized.");
-  //   // }
-  // }
+
 
   cid: any;
   cardUpdateBtn(i: any) {
@@ -132,7 +121,7 @@ export class BirdHomeComponent implements OnInit {
     this.birdsArray[this.cid].title = this.form.get('title')?.value;
     this.birdsArray[this.cid].subTitle = this.form.get('subTitle')?.value;
     this.birdsArray[this.cid].about = this.form.get('about')?.value;
-    this.birdsArray[this.cid].image = this.selectedFile;
+    this.birdsArray[this.cid].image = this.form.get('image')?.value;
     console.log("update bird", this.birdsArray[this.cid]);
     this.updateBird(this.birdsArray[this.cid]);
     this.form.reset();
