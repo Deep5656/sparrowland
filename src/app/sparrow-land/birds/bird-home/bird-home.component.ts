@@ -8,6 +8,8 @@ import { ViewContainer } from 'src/app/shared/directives/viewContainer.directive
 // import swal from 'sweetalert';
 import swal from 'sweetalert2'
 import { SubjectService } from 'src/app/shared/services/subject.service';
+import { AboutComponent } from '../../about/about.component';
+import { AdminLogin } from './admin-login/admin-login.component';
 
 @Component({
   selector: 'app-bird-home',
@@ -31,7 +33,6 @@ export class BirdHomeComponent implements OnInit {
   selectedFile: any = null;
   role:any;
   user:any;
-  // displayImage:any;
   
 
   constructor(private fb: FormBuilder,
@@ -66,7 +67,6 @@ export class BirdHomeComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-    // this.displayImage = this.selectedFile.name;
     console.log("this.selectedFile", this.selectedFile);
 
   }
@@ -184,7 +184,22 @@ export class BirdHomeComponent implements OnInit {
     if(role == 'Admin'){
       this.role = 'Normal';
     }else{
-      this.role = 'Admin';
+      const dialog = this.dialog.open(AdminLogin,{
+        width: '50%',
+        height:'50%',
+        data: {
+          'userName':'Aman',
+          'password':'123',
+        },
+        disableClose: true
+      }).afterClosed().subscribe((result)=>{
+        console.log("Dialog closed with value: ",result);
+        if(result){
+          this.role = result;
+        }
+        
+    })
+      // this.role = 'Admin';
     }
   }
 

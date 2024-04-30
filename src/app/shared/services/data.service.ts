@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 })
 export class DataService {
 
-    port:number = 8080;
+    port:number = 9090;
     baseURL:any = `http://localhost:${this.port}/bird/rest/v1/us`;
 
     constructor(private http: HttpClient) { }
@@ -14,19 +14,14 @@ export class DataService {
     getAllBirds(){
        return this.http.get(this.baseURL+'/getAllBirds');
     }
-    // localhost:8080/bird/rest/v1/us/createBird?title=sparrow&subTitle=sparrowwww&about=redtape
+
     createBird(payload:any){
-        // createBird(title: string, subTitle: string, about: string, file: File) {
             const formData: FormData = new FormData();
             formData.append('title', payload.title);
             formData.append('subTitle', payload.subTitle);
             formData.append('about', payload.about);
             formData.append('file', payload.image, payload.image.name);
-          
             return this.http.post(this.baseURL+'/createBird', formData);
-          
-          
-        // return this.http.post(this.baseURL+`/createBird?title=${payload.title}&subTitle=${payload.subTitle}&about=${payload.about}`,payload.image);
     }
 
     updateBird(payload:any){
@@ -43,7 +38,6 @@ export class DataService {
         return this.http.post(this.baseURL+'/deleteBird',payload);
     }
 
-    //test
     getAll(){
         return this.http.get(this.baseURL+'/getAllBirds',
         {

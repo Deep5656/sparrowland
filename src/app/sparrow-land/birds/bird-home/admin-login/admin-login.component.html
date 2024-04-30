@@ -1,0 +1,40 @@
+<div class="flex-row">
+    <div class="flex-row-100">
+        <div class="flex-row popHeader">
+            <div class="flex-row-95">
+                <!-- <marquee behavior="slide" direction="" loop="1"> -->
+                    <p  style="position: relative;top:5px;color:red" class="fs12"><span
+                        class="center"  style="font-weight: lighter;">Admin Login</span></p>
+                <!-- </marquee> -->
+            </div>
+            <div class="flex-row-5">
+                <mat-icon mat-dialog-close class="fright cursor closeBtn" (click)="close()">X</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="flex-col center">
+        <div class="flex-row-10"></div>
+        <div class="flex-row-80">
+            <form [formGroup]="form">
+                <div formGroupName="userDetails">
+                    <div class="flex-col">
+                        <mat-form-field class="example-full-width">
+                            <mat-label class="fs12 fwbold" style="color: black;">UserName</mat-label>
+                            <input matInput formControlName="userName">
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label class="fs12 fwbold" style="color: black;">Password</mat-label>
+                            <input matInput formControlName="password">
+                        </mat-form-field>
+
+                        <button mat-raised-button color="primary" (click)="login()">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="flex-row-10"></div>
+    </div>
+</div>

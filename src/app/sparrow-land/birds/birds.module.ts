@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { BirdDialogComponent } from './bird-home/bird-dialog/bird-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { AdminLogin } from './bird-home/admin-login/admin-login.component';
 
 
 
@@ -20,6 +21,7 @@ const birdRoute:Routes = [
     declarations: [
         BirdHomeComponent,
         BirdDialogComponent,
+        AdminLogin
     ],
     imports: [
         CommonModule,
