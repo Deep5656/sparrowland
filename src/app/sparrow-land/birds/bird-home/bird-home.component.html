@@ -1,6 +1,9 @@
 <div class="flex-row">
     <div class="flex-row-100">
         <div class="flex-row center">
+            <div class="flex-row-20">
+                <p class="fs11" style="margin-top: 20px;">Bird count: {{birdsArray.length}}</p>
+            </div>
             <div class="flex-row-60">
                 <input type="text" placeholder="Search Bird Here...." class="searchBar" rainbow [(ngModel)]="searchVal">
                 <!-- <button mat-raised-button class="btn ml10 p10" style="background: #c0caff;"
@@ -21,7 +24,7 @@
         </div>
     </div>
 
-    <div class="flex-row-80" [ngClass]="{'flex-row-80': role === 'Admin','flex-row-100': role === 'Normal'}">
+    <div class="flex-row-80" [ngClass]="{'flex-row-80': role === 'Admin','flex-row-90': role === 'Normal'}">
         <div class="flex-row" style="max-height: 90vh; overflow: scroll;">
             <ng-container *ngFor="let bird of birdsArray | filterPipe:searchVal;let i = index;">
                 <div class="flex-row-20 m20 mr5">

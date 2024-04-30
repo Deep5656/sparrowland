@@ -21,6 +21,7 @@ export class DataService {
             formData.append('subTitle', payload.subTitle);
             formData.append('about', payload.about);
             formData.append('file', payload.image, payload.image.name);
+            formData.append('imageName', payload.imageName);
             return this.http.post(this.baseURL+'/createBird', formData);
     }
 
@@ -30,7 +31,12 @@ export class DataService {
             formData.append('title', payload.title);
             formData.append('subTitle', payload.subTitle);
             formData.append('about', payload.about);
-            formData.append('file', payload.image, payload.image.name);
+            if(payload.imageName != ""){
+                formData.append('file', payload.image, payload.image.name);
+                formData.append('imageName', payload.imageName);
+            }
+           
+
         return this.http.post(this.baseURL+'/updateBird',formData,{observe:'response'});
     }
 

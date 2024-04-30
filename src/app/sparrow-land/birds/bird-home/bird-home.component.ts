@@ -67,11 +67,11 @@ export class BirdHomeComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-    console.log("this.selectedFile", this.selectedFile);
-
   }
+  
   add() {
     this.form.value['image'] = this.selectedFile;
+    this.form.value['imageName'] = this.selectedFile.name;
     this.birdsArray.push(this.form.value);
     console.log("this.form.value", this.form.value);
     this.createBird(this.form.value);
@@ -116,13 +116,21 @@ export class BirdHomeComponent implements OnInit {
 
   }
 
+
   updateBtn() {
     this.Autoupdate = false;
     this.birdsArray[this.cid].id = this.form['id'];
     this.birdsArray[this.cid].title = this.form.get('title')?.value;
     this.birdsArray[this.cid].subTitle = this.form.get('subTitle')?.value;
     this.birdsArray[this.cid].about = this.form.get('about')?.value;
-    this.birdsArray[this.cid].image = this.form.get('image')?.value;
+    if(this.selectedFile!=null){
+      this.birdsArray[this.cid].image = this.selectedFile;
+      this.birdsArray[this.cid].imageName = this.selectedFile.name;
+    }else{
+      this.birdsArray[this.cid].image = this.form.get('image').value;
+      this.birdsArray[this.cid].imageName = this.form.get('image').value;
+    }
+    
     console.log("update bird", this.birdsArray[this.cid]);
     this.updateBird(this.birdsArray[this.cid]);
     this.form.reset();
@@ -185,12 +193,8 @@ export class BirdHomeComponent implements OnInit {
       this.role = 'Normal';
     }else{
       const dialog = this.dialog.open(AdminLogin,{
-        width: '50%',
+        width: '30%',
         height:'50%',
-        data: {
-          'userName':'Aman',
-          'password':'123',
-        },
         disableClose: true
       }).afterClosed().subscribe((result)=>{
         console.log("Dialog closed with value: ",result);
@@ -199,7 +203,6 @@ export class BirdHomeComponent implements OnInit {
         }
         
     })
-      // this.role = 'Admin';
     }
   }
 
