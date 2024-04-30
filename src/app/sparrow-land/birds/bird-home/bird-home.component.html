@@ -8,14 +8,14 @@
             </div>
             <div *ngIf="role == 'Normal'">
                 <div class="flex-row">
-                    <button (click)="Admin('Normal')">Normal</button>
-                    <div class="dot mt5 ml10"></div>
+                    <button (click)="Admin('Normal')">{{role}}</button>
+                    <div [ngStyle]="{'background-color': user == 'Normal' ? 'red' : '#606fc7'}" class="dot mt5 ml10"></div>
                 </div>
             </div>
             <div *ngIf="role == 'Admin'">
                 <div class="flex-row">
-                    <button (click)="Admin('Admin')">Admin</button>
-                    <div class="dot mt5 ml10"></div>
+                    <button (click)="Admin('Admin')">{{role}}</button>
+                    <div [ngStyle]="{'background-color': user == 'Admin' ? '#606fc7' : 'red'}" class="dot mt5 ml10"></div>
                 </div>
             </div>
         </div>

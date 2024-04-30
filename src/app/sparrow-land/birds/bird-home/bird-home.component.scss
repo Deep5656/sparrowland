@@ -8,6 +8,12 @@ $component: 'bird-home';
     padding: 0px;
 }
 
+@mixin dot(){
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+}
+
 .btn {
     width: 15%;
     padding: 5px;
@@ -66,13 +72,5 @@ $component: 'bird-home';
 }
 
 .dot {
-    height: 10px;
-    width: 10px;
-    background-color: #606fc7;
-    border-radius: 50%;
-
-    &:hover {
-        background-color: red;
-
-    }
+    @include dot();
 }

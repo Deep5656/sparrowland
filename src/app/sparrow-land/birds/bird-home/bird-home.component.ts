@@ -30,6 +30,7 @@ export class BirdHomeComponent implements OnInit {
   @ViewChild(ViewContainer) container: ViewContainer;
   selectedFile: any = null;
   role:any;
+  user:any;
   // displayImage:any;
   
 
