@@ -11,13 +11,7 @@ import { DataService } from 'src/app/shared/services/data.service';
 export class HomeComponent implements OnInit {
 
   BirdImages:any = [
-    {src:'SL1.jpg',name:'img1'},
-    {src:'SL2.jpg',name:'img2'},
-    {src:'SL3.jpg',name:'img3'},
-    {src:'SL3.jpg',name:'img3'},
-    {src:'SL3.jpg',name:'img3'},
-    {src:'SL3.jpg',name:'img3'},
-    {src:'SL3.jpg',name:'img3'},
+    
   ];
   AnimalImages:any = [
     {src:'SL1.jpg',name:'img1'},
@@ -47,10 +41,6 @@ export class HomeComponent implements OnInit {
     .pipe(
       tap(event => {
         console.log("tap event",event);
-        // if(event.type === HttpEventType.Sent){
-        //   // console.log();
-          
-        // }
         if(event.type === HttpEventType.Response){
           console.log(event.body);
         } 
@@ -58,14 +48,25 @@ export class HomeComponent implements OnInit {
     )
     .subscribe({
       next: (res:any) =>{
-        console.log(res);
+        console.log("this.birdsArray",res);
+        this.BirdImages = this.shuffleArray(res.body);
       },
       error : (err:any) => {
         console.log(err);
       }
     });
     console.log('getAll');
+
     
+  }
+
+  shuffleArray(array: any[]): any[] {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      // Swap elements at index i and j
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
   }
 
   prev(){

@@ -1,0 +1,51 @@
+<div class="flex-row">
+    <div class="flex-row-100">
+        <div class="flex-row popHeader">
+            <div class="flex-row-95">
+                <marquee behavior="slide" direction="" loop="1">
+                    <p style="position: relative;top:5px;color:red" class="fs12"><span
+                            style="font-weight: lighter;">Notifications</span></p>
+                </marquee>
+            </div>
+            <div class="flex-row-5">
+                <mat-icon mat-dialog-close class="fright cursor closeBtn" (click)="close()">X</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="flex-row-100">
+    <div class="flex-row" style="max-height: 90vh; overflow: scroll;">
+        <ng-container *ngFor="let bird of userBirdArr; let i as index">
+            <div class="flex-row-20 m20 mr5">
+                <div class="flex-row">
+                    <mat-card class="box">
+                        <div style="position: relative; display: inline-block;">
+                            <img class="image" [src]="'data:image/png;base64,'+bird?.birdImage" alt="new img">
+                            <div style="position: absolute; top: 0%; left: 2%; color: white;">
+                                <mat-card-header>
+                                    <mat-card-title>{{bird?.birdName}}</mat-card-title>
+                                    <mat-card-subtitle style="color:rgb(226, 224, 224)">{{bird?.birdSubTitle}}</mat-card-subtitle>
+                                </mat-card-header>
+                            </div>
+                        </div>
+                        <mat-card-content>
+                            <div class="fs10 mt10" style="color:gray">User Name:{{bird.userName}}</div>
+                            <p>{{bird?.aboutBird | shortTxt:75}} <span class="fs10 color" (click)="showMore(i)">Show
+                                    more</span></p>
+                        </mat-card-content>
+                        <div>
+                            <button mat-flat-button class="fs12 updateBtn"
+                                style="background-color: transparent;">Approve</button>
+                            <button mat-flat-button class="fs12 removeBtn"
+                                style="background-color: transparent;" (click)="Reject(i)">Reject</button>
+                        </div>
+
+
+                    </mat-card>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

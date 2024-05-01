@@ -1,0 +1,47 @@
+<div class="flex-row">
+    <div class="flex-row-100">
+        <div class="flex-row popHeader">
+            <div class="flex-row-95">
+                <marquee behavior="slide" direction="" loop="1">
+                    <p style="position: relative;top:5px;color:red" class="fs12"><span
+                            style="font-weight: lighter;">Notifications</span></p>
+                </marquee>
+            </div>
+            <div class="flex-row-5">
+                <mat-icon mat-dialog-close class="fright cursor closeBtn" (click)="close()">X</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="flex-row-100">
+    <div class="flex-row">
+        <div class="flex-row-40 ml20">
+            <div class="flex-row">
+                <img class="image" [src]="'data:image/png;base64,'+this.data?.birdImage" alt="new img">
+            </div>
+        </div>
+        <div class="flex-row-40 ml20">
+            <div class="flex-col">
+                <div *ngIf="!editMode">
+                    <p>subTitle: {{data?.birdSubTitle}}</p>
+                    <p>About: {{data?.aboutBird}}</p>
+                    <p>userName: {{data?.userName}}</p>
+                </div>
+                <div *ngIf="editMode">
+                    <label>subTitle:
+                        <textarea [(ngModel)]="data.birdSubTitle" rows="4" cols="50" style="resize: vertical;"></textarea>
+                    </label><br>
+                    <label>About:
+                        <textarea [(ngModel)]="data.aboutBird" rows="4" cols="50" style="resize: vertical;"></textarea>
+                    </label><br>
+                    <label>userName:
+                        <textarea [(ngModel)]="data.userName" rows="4" cols="50" style="resize: vertical;"></textarea>
+                    </label>
+                </div>
+                <button (click)="toggleEditMode()">{{editMode ? 'Save' : 'Edit'}}</button>
+            </div>
+        </div>
+        
+    </div>
+</div>

@@ -4,7 +4,7 @@
            
             <ng-container *ngFor="let img of BirdImages">
                 <div class="flex-row" style="border: 2px solid white;width: 20%;height:30vh;">
-                    <img [src]="'../../../assets/images/' + img.src" [alt]="img.name">
+                    <img [src]="'data:image/png;base64,'+img.image" [alt]="img.imageName" class="image">
                 </div>
             </ng-container>
             

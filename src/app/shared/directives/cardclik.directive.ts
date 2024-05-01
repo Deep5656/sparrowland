@@ -12,13 +12,12 @@ import { SubjectService } from "../services/subject.service";
 export class cardclickDirective implements OnInit {
 
     @Input() cardId:any;
+    @Input() birdsArray: any;
     @ViewChild('subTitle') subTitle:ElementRef;
 
-    birdsArray: any;
 
     constructor(private renderer: Renderer2, private el: ElementRef, private dialog: MatDialog, private _dataService: DataService,private _subjectService:SubjectService) { }
     ngOnInit(): void {
-        this.getAllBirds();
         const childElement = this.el.nativeElement.querySelector('mat-card-subtitle');
         const title = this.el.nativeElement.querySelector('mat-card-title');
         this.renderer.setStyle(childElement,'display','none');
@@ -29,6 +28,11 @@ export class cardclickDirective implements OnInit {
     @HostBinding('style.background-color') bgColor: any;
     @HostListener('click') onClick() {
         this.bgColor = 'pink';
+        let birdImageArr = this.birdsArray[this.cardId];
+        console.log("this.birdsArray:",this.birdsArray[this.cardId]);
+
+        this._subjectService.image.next(birdImageArr)
+
     }
 
     @HostListener('mouseover') onMouseOver() {

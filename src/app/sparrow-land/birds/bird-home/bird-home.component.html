@@ -2,7 +2,7 @@
     <div class="flex-row-100">
         <div class="flex-row center">
             <div class="flex-row-20">
-                <p class="fs11" style="margin-top: 20px;">Bird count: {{birdsArray.length}}</p>
+                <p class="fs11" style="margin-top: 20px;">total birds count: {{birdsArray.length}}</p>
             </div>
             <div class="flex-row-60">
                 <input type="text" placeholder="Search Bird Here...." class="searchBar" rainbow [(ngModel)]="searchVal">
@@ -11,38 +11,53 @@
             </div>
             <div *ngIf="role == 'Normal'">
                 <div class="flex-row">
-                    <button (click)="Admin('Normal')">{{role}}</button>
-                    <div [ngStyle]="{'background-color': user == 'Normal' ? 'red' : '#606fc7'}" class="dot mt5 ml10"></div>
+                    <button class="cursor" (click)="Admin('Normal')">{{role}}</button>
+                    <div [ngStyle]="{'background-color': user == 'Normal' ? 'red' : '#606fc7'}" class="dot mt5 ml10">
+                    </div>
                 </div>
             </div>
             <div *ngIf="role == 'Admin'">
-                <div class="flex-row">
-                    <button (click)="Admin('Admin')">{{role}}</button>
-                    <div [ngStyle]="{'background-color': user == 'Admin' ? '#606fc7' : 'red'}" class="dot mt5 ml10"></div>
+                <div class="flex-row-100 mt10">
+                    <div class="flex-row">
+                        <div>
+                            <p class="notification cursor">
+                                <span (click)="Notifications()">Notifications</span>
+                                <span class="badge">{{this.userBirdArr.length}}</span>
+                            </p>
+                        </div>
+                        <button class="ml10 cursor" style="height: 20px; margin-top: 10px;"
+                            (click)="Admin('Admin')">{{role}}</button>
+                        <div [ngStyle]="{'background-color': user == 'Admin' ? '#606fc7' : 'red'}"
+                            style="margin-top: 15px;" class="dot ml10">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="flex-row-80" [ngClass]="{'flex-row-80': role === 'Admin','flex-row-90': role === 'Normal'}">
+    <div class="flex-row-75">
         <div class="flex-row" style="max-height: 90vh; overflow: scroll;">
             <ng-container *ngFor="let bird of birdsArray | filterPipe:searchVal;let i = index;">
                 <div class="flex-row-20 m20 mr5">
                     <div class="flex-row">
-                        <mat-card class="box" cardClick [cardId]="i">
+                        <mat-card class="box" cardClick [cardId]="i" [birdsArray]="birdsArray">
                             <div style="position: relative; display: inline-block;">
                                 <img class="image" [src]="'data:image/png;base64,'+bird?.image" alt="new img">
                                 <div style="position: absolute; top: 0%; left: 2%; color: white;">
-                                  <mat-card-header>
-                                    <mat-card-title>{{bird?.title}}</mat-card-title>
-                                    <mat-card-subtitle>{{bird?.subTitle}}</mat-card-subtitle>
-                                </mat-card-header>
+                                    <mat-card-header>
+                                        <mat-card-title>{{bird?.title}}</mat-card-title>
+                                        <mat-card-subtitle
+                                            style="color:rgb(226, 224, 224)">{{bird?.subTitle}}</mat-card-subtitle>
+                                    </mat-card-header>
                                 </div>
-                              </div>
+                            </div>
                             <mat-card-content>
 
                                 <p>{{bird?.about | shortTxt:75}} <span class="fs10 color" (click)="showMore(i)">Show
                                         more</span></p>
+                                <div *ngIf="role == 'Normal'" class="fs10"
+                                    style="position: absolute;bottom: 0px; color:gray">Picture credit:Aman</div>
                             </mat-card-content>
                             <div *ngIf="role == 'Admin'">
                                 <button mat-flat-button class="fs12 updateBtn" style="background-color: transparent;"
@@ -65,7 +80,7 @@
         </div>
     </div>
     <div class="flex-row-20" *ngIf="role == 'Admin'">
-        <div class="flex-col center mt20" [formGroup]="form" style="border-left: 1px solid black;">
+        <div class="flex-col mt20" [formGroup]="form" style="border-left: 1px solid black;padding-left: 40px;">
             <h3 class="fs12">Add New Bird</h3>
             <mat-form-field>
                 <mat-label class="fs12">Bird Title</mat-label>
@@ -86,6 +101,15 @@
 
             <button mat-flat-button class="btn" *ngIf="!this.Autoupdate" (click)="add()">Add</button>
             <button mat-flat-button class="btn" *ngIf="this.Autoupdate" (click)="updateBtn()">Update</button>
+        </div>
+    </div>
+    <div class="flex-row-20" *ngIf="role == 'Normal'">
+        <div class="flex-col center mt20" style="border-left: 1px solid black;">
+            <p *ngIf="this.clickedBird == ''" class="birdImg" style="align-items: center;">Single click on Image for
+                Better view and double click for more details.</p>
+            <img *ngIf="this.clickedBird != ''" [src]="'data:image/png;base64,'+this.clickedBird.image" alt="New Image"
+                class="birdImg">
+            <h1 *ngIf="this.clickedBird != ''" style="margin-left: 20px;"><b>{{this.clickedBird.title}}</b></h1>
         </div>
     </div>
 </div>

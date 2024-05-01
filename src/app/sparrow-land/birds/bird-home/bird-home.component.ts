@@ -10,6 +10,7 @@ import swal from 'sweetalert2'
 import { SubjectService } from 'src/app/shared/services/subject.service';
 import { AboutComponent } from '../../about/about.component';
 import { AdminLogin } from './admin-login/admin-login.component';
+import { NotificationComponent } from './notifications/notification.component';
 
 @Component({
   selector: 'app-bird-home',
@@ -33,6 +34,8 @@ export class BirdHomeComponent implements OnInit {
   selectedFile: any = null;
   role:any;
   user:any;
+  clickedBird:any="";
+  userBirdArr:any;
   
 
   constructor(private fb: FormBuilder,
@@ -49,10 +52,17 @@ export class BirdHomeComponent implements OnInit {
       'image': new FormControl('', [Validators.required])
     });
     this.getAllBirds();
+    this.getAllNotifications();
 
     this._subjectService.role.subscribe((res)=>{
       this.role = res;
       console.log("bird comp role",this.role);
+      
+    })
+
+    this._subjectService.image.subscribe((res)=>{
+      console.log("BirdImageArr",res);
+      this.clickedBird = res;
       
     })
 
@@ -205,5 +215,19 @@ export class BirdHomeComponent implements OnInit {
     })
     }
   }
+
+  Notifications(){
+    const dialog = this.dialog.open(NotificationComponent,{
+      width:'100%',
+      height:'100%'
+    })
+  }
+
+  getAllNotifications(){
+    this._dataService.getAllNotifications().subscribe((res)=>{
+        console.log("resf",res);
+        this.userBirdArr = res;
+    })
+}
 
 }

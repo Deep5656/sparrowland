@@ -10,6 +10,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { BirdDialogComponent } from './bird-home/bird-dialog/bird-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { AdminLogin } from './bird-home/admin-login/admin-login.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { NotificationComponent } from './bird-home/notifications/notification.component';
+import { userBirdDialogComponent } from './bird-home/notifications/user-bird-dialog/user-bird-dialog.component';
 
 
 
@@ -21,7 +24,9 @@ const birdRoute:Routes = [
     declarations: [
         BirdHomeComponent,
         BirdDialogComponent,
-        AdminLogin
+        AdminLogin,
+        NotificationComponent,
+        userBirdDialogComponent
     ],
     imports: [
         CommonModule,
@@ -31,6 +36,7 @@ const birdRoute:Routes = [
         ReactiveFormsModule,
         MatInputModule,
         MatIconModule,
+        MatBadgeModule,
         RouterModule.forChild(birdRoute),
         SharedModule
     ]

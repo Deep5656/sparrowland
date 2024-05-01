@@ -1,0 +1,36 @@
+$component: 'notifiations';
+@import '../../../../shared/common-css/common-css.scss';
+
+
+@mixin Btn() {
+    position: absolute;
+    bottom: 6px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.updateBtn {
+    @include Btn();
+    left: 0px;
+}
+
+.removeBtn {
+    @include Btn();
+    right: 0px;
+}
+
+.box {
+    height: 400px;
+    width: 400px;
+    overflow: auto;
+
+    @media (max-width:650px) {
+        width: 100%;
+    }
+
+}
+
+.image {
+    height: 45vh;
+    width: 100%;
+}
