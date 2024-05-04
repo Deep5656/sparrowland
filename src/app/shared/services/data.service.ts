@@ -85,4 +85,18 @@ export class DataService {
     rejectUserBird(payload:any){
         return this.http.post(this.baseURL2+ '/deleteNewBird',payload);
     }
+
+    approveUserBird(payload:any){
+        const formData: FormData = new FormData();
+        formData.append('id',payload.id);
+        formData.append('birdName',payload.birdName);
+        formData.append('birdSubTitle',payload.birdSubTitle);
+        formData.append('aboutBird',payload.aboutBird);
+        formData.append('userName',payload.userName);
+        if(payload.birdImageName != ""){
+            formData.append('file',payload.birdImage);
+            formData.append('birdImageName',payload.birdImageName);
+        }
+        return this.http.post(this.baseURL2+ '/approveUserBird',formData);
+    }
 }

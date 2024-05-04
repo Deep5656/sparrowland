@@ -93,7 +93,15 @@ export class ContactComponent implements OnInit {
       "birdImage":this.selectedImage,
       "birdImageName":this.selectedImage.name
     }
-    this.createUserBird(payload);
+    try{
+      this.createUserBird(payload);
+      this.birdForm.reset();
+      alert("Sent successfully");
+
+    }catch(e){
+      console.error("Error sending bird data:", e); // Log the error
+        alert("Failed to send data. Please try again.");
+    }
    
   }
   

@@ -72,39 +72,42 @@
       </form>
     </mat-card>
   </div>
-  <div class="flex-row-40">
+  <div class="flex-row-40 ml20">
     <div class="flex-row">
-      <h1>Send Bird Details that you want to add here !!</h1>
-      <form [formGroup]="birdForm">
-        <div formGroupName="birdFormDetails">
-          <mat-form-field class="example-full-width">
-            <mat-label class="fs12 fwbold" style="color: black;">Bird Name</mat-label>
-            <input matInput formControlName="birdName">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label class="fs12 fwbold" style="color: black;">Bird SubTitle</mat-label>
-            <input matInput formControlName="birdSubTitle">
-          </mat-form-field>
-          <mat-form-field class="example-full-width">
-            <mat-label class="fs12 fwbold" style="color: black;">About Bird</mat-label>
-            <input matInput formControlName="aboutBird">
-          </mat-form-field>
-          <!-- <mat-form-field class="example-full-width"> -->
-          <!-- <mat-label class="fs12 fwbold" style="color: black;">Bird Image</mat-label> -->
-          <!-- <input matInput formControlName="birdImage"> -->
-          <div>
-            <label class="fs12">Bird Image</label>
-            <input style="width: 200px;" formControlName="birdImage" type="file" (change)="onFileSelected($event)">
-          </div>
-          <!-- </mat-form-field> -->
-          <mat-form-field class="example-full-width">
-            <mat-label class="fs12 fwbold" style="color: black;">Your Name</mat-label>
-            <input matInput formControlName="userName">
-          </mat-form-field>
+      <mat-card class="mt20">
+        <mat-card-content class="tacenter fs12">Send Bird Details here !!</mat-card-content>
+        <form class="m20" [formGroup]="birdForm">
+          <div formGroupName="birdFormDetails">
+            <mat-form-field class="example-full-width">
+              <mat-label class="fs12 fwbold" style="color: black;">Bird Name</mat-label>
+              <input matInput formControlName="birdName">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label class="fs12 fwbold" style="color: black;">Bird SubTitle</mat-label>
+              <input matInput formControlName="birdSubTitle">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label class="fs12 fwbold" style="color: black;">About Bird</mat-label>
+              <input matInput formControlName="aboutBird">
+            </mat-form-field>
+            <!-- <mat-form-field class="example-full-width"> -->
+            <!-- <mat-label class="fs12 fwbold" style="color: black;">Bird Image</mat-label> -->
+            <!-- <input matInput formControlName="birdImage"> -->
+            <div>
+              <label class="fs12">Bird Image: </label>
+              <input style="width: 200px;" formControlName="birdImage" type="file" (change)="onFileSelected($event)">
+            </div>
+            <!-- </mat-form-field> -->
+            <mat-form-field class="example-full-width mt10">
+              <mat-label class="fs12 fwbold" style="color: black;">Your Name</mat-label>
+              <input matInput formControlName="userName">
+            </mat-form-field>
 
-          <button (click)="SendBird()">Send Bird</button>
-        </div>
-      </form>
+            <button class="cursor" (click)="SendBird()">Send Bird</button>
+          </div>
+        </form>
+      </mat-card>
+
     </div>
   </div>
   <div class="flex-row-10"></div>

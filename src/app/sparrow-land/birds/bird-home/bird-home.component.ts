@@ -72,8 +72,13 @@ export class BirdHomeComponent implements OnInit {
     this._dataService.getAllBirds().subscribe(res => {
       this.birdsArray = res;
       console.log("birds", this.birdsArray);
+      // for(let bird of this.birdsArray){
+      //   console.log(bird.image);
+        
+      // }
     });
   }
+
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -188,6 +193,10 @@ export class BirdHomeComponent implements OnInit {
   }
 
   showMore(index: any) {
+    console.log("index",index);
+    console.log("birdArray",this.birdsArray);
+    
+    
     const dialog = this.dialog.open(BirdDialogComponent, {
       width: '70%',
       height: '90%',
@@ -220,6 +229,8 @@ export class BirdHomeComponent implements OnInit {
     const dialog = this.dialog.open(NotificationComponent,{
       width:'100%',
       height:'100%'
+    }).afterClosed().subscribe((res)=>{
+      this.getAllBirds();
     })
   }
 

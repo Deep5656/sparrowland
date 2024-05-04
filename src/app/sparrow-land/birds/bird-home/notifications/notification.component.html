@@ -37,9 +37,9 @@
                         </mat-card-content>
                         <div>
                             <button mat-flat-button class="fs12 updateBtn"
-                                style="background-color: transparent;">Approve</button>
+                                style="background-color: transparent;" (click)="approve(i)">Approve</button>
                             <button mat-flat-button class="fs12 removeBtn"
-                                style="background-color: transparent;" (click)="Reject(i)">Reject</button>
+                                style="background-color: transparent;" (click)="reject(i)">Reject</button>
                         </div>
 
 
@@ -47,5 +47,11 @@
                 </div>
             </div>
         </ng-container>
+         
     </div>
+</div>
+<div class="flex-row-100 tacenter">
+    <div *ngIf="!userBirdArr || userBirdArr.length === 0" class="centered-message">
+        <p>No record found.</p>
+    </div> 
 </div>

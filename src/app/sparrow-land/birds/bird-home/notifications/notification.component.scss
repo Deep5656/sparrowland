@@ -34,3 +34,12 @@ $component: 'notifiations';
     height: 45vh;
     width: 100%;
 }
+
+/* CSS for centering the message */
+.centered-message {
+    display: flex; /* Use flexbox for easy centering */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100%; /* Set height to 100% to fill the container */
+    text-align: center; /* Center text within the div */
+}

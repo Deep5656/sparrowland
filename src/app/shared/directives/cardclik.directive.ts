@@ -22,15 +22,25 @@ export class cardclickDirective implements OnInit {
         const title = this.el.nativeElement.querySelector('mat-card-title');
         this.renderer.setStyle(childElement,'display','none');
         this.renderer.setStyle(title,'display','none');
+        // console.log("cardId",this.cardId);
+        
         
     }
 
     @HostBinding('style.background-color') bgColor: any;
     @HostListener('click') onClick() {
         this.bgColor = 'pink';
-        let birdImageArr = this.birdsArray[this.cardId];
-        console.log("this.birdsArray:",this.birdsArray[this.cardId]);
-
+        let birdImageArr:any;
+        console.log("birdId",this.cardId);
+        
+        this.birdsArray.filter((bird:any)=>{
+            if(bird.id == this.cardId){
+                 birdImageArr = bird;
+            }
+        })
+        // let birdImageArr = this.birdsArray[this.cardId];
+        // console.log("this.birdsArray:",this.birdsArray[this.cardId]);
+        console.log("birdImageArr",birdImageArr);
         this._subjectService.image.next(birdImageArr)
 
     }
@@ -56,6 +66,8 @@ export class cardclickDirective implements OnInit {
     @HostListener('dblclick') ondblClick() {
         this.bgColor = 'rgb(252, 166, 180)';
         this.renderer.removeStyle(this.el.nativeElement, 'border');
+        console.log("BirdId dblclick",this,this.cardId);
+        
         const dialog = this.dialog.open(BirdDialogComponent, {
             width: '70%',
             height: '90%',

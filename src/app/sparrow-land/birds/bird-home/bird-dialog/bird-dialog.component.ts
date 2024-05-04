@@ -13,7 +13,13 @@ export class BirdDialogComponent implements OnInit{
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,public dialog:MatDialog){}
   ngOnInit(): void {
     let cardId = this.data.cardId
-    this.birdData = this.data.birdArray[cardId];
+    this.birdData = this.data.birdArray;
+    this.birdData.filter((bird:any)=>{
+      if(bird.id === cardId){
+        this.birdData = bird;
+      }
+    })
+
     console.log("birdData",this.birdData);
     
   }

@@ -24,12 +24,23 @@ export class NotificationComponent implements OnInit{
 
     getAllNotifications(){
         this.dataService.getAllNotifications().subscribe((res)=>{
-            console.log("resf",res);
+            console.log("resf",res);            
             this.userBirdArr = res;
         })
     }
 
-    Reject(index:any){
+    approve(index:any){
+        console.log("index",index);
+        console.log(index.birdImage);
+        
+        this.dataService.approveUserBird(index).subscribe((res)=>{
+            console.log(res);
+            this.reject(index);
+        })
+        
+    }
+
+    reject(index:any){
         console.log("index",index);
         this.dataService.rejectUserBird(index).subscribe((res)=>{
             console.log(res);
