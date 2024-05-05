@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { SubjectService } from "src/app/shared/services/subject.service";
 
 @Component(
     {
@@ -12,7 +13,9 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dial
 export class AdminLogin implements OnInit {
 
     form: FormGroup = new FormGroup<any>({});
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialogRef<AdminLogin>, private fb:FormBuilder) { }
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+     public dialog: MatDialogRef<AdminLogin>, private fb:FormBuilder,
+    private subjectService:SubjectService) { }
     ngOnInit(): void {
         this.form = this.fb.group({
             'userDetails' : new FormGroup({
@@ -33,6 +36,7 @@ export class AdminLogin implements OnInit {
         if(this.form.value.userDetails.userName === "Aman" && this.form.value.userDetails.password === "123"){
             role = "Admin";
             this.dialog.close(role);
+            this.subjectService.role.next(role);
             alert("successfull login !!")
         }else{
             role = "Normal";

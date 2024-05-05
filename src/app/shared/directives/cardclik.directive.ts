@@ -14,6 +14,7 @@ export class cardclickDirective implements OnInit {
     @Input() cardId:any;
     @Input() birdsArray: any;
     @ViewChild('subTitle') subTitle:ElementRef;
+    @Input() role:any;
 
 
     constructor(private renderer: Renderer2, private el: ElementRef, private dialog: MatDialog, private _dataService: DataService,private _subjectService:SubjectService) { }
@@ -22,6 +23,9 @@ export class cardclickDirective implements OnInit {
         const title = this.el.nativeElement.querySelector('mat-card-title');
         this.renderer.setStyle(childElement,'display','none');
         this.renderer.setStyle(title,'display','none');
+        this._subjectService.role.subscribe((role)=>{
+            this.role = role;
+        })
         // console.log("cardId",this.cardId);
         
         
@@ -32,6 +36,8 @@ export class cardclickDirective implements OnInit {
         this.bgColor = 'pink';
         let birdImageArr:any;
         console.log("birdId",this.cardId);
+        console.log("role",this.role);
+        
         
         this.birdsArray.filter((bird:any)=>{
             if(bird.id == this.cardId){
@@ -67,13 +73,15 @@ export class cardclickDirective implements OnInit {
         this.bgColor = 'rgb(252, 166, 180)';
         this.renderer.removeStyle(this.el.nativeElement, 'border');
         console.log("BirdId dblclick",this,this.cardId);
+        console.log("Card Role",this.role);
         
         const dialog = this.dialog.open(BirdDialogComponent, {
             width: '70%',
             height: '90%',
             data: {
                 'birdArray':this.birdsArray,
-                'cardId':this.cardId
+                'cardId':this.cardId,
+                'role':this.role
             }
         })
     }

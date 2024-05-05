@@ -1,5 +1,5 @@
 <div>
-    <div class="flex-row">
+    <div class="flex-row" style="position: sticky; top: 0; z-index: 1000;">
         <div class="flex-row-100">
             <div class="flex-row popHeader">
                 <div class="flex-row-95">
@@ -15,17 +15,34 @@
     </div>
     <div class="flex-row center">
         <div class="flex-row-90">
-            <div class="flex-row">
-                <!-- <h1>{{birdData | json}}</h1> -->
+            <div class="flex-row" *ngIf="!this.editMode">
                 <div class="flex-row-40">
-                    <div class="flex-row m10">
-                        <!-- <h1 class="fs12">{{birdData.image}}</h1> -->
+                    <div class="flex-row mt10" style="position: fixed;">
                         <img class="image" [src]="'data:image/png;base64,'+birdData?.image" alt="new Image">
+                        <div *ngIf="role == 'Admin'">
+                            <button style="position: absolute; right: 0px;" (click)="toggleEditMode()">Edit</button>
+                        </div>
                     </div>
                 </div>
                 <div class="flex-row-60">
-                    <div class="flex-row border m10">
-                        <h1 class="fs12">{{birdData.about}}</h1>
+                    <div class="flex-row m10">
+                        <h1 class="fs12" [innerHTML]="birdData.about" style="line-height: 20px;">{{birdData.about}}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-row" *ngIf="this.editMode">
+                <div class="flex-row-40">
+                    <div class="flex-row mt10" style="position: fixed;">
+                        <img class="image" [src]="'data:image/png;base64,'+birdData?.image" alt="new Image">
+                        <div *ngIf="role == 'Admin'">
+                            <button style="position: absolute; right: 0px;" (click)="toggleEditMode()">{{editMode ? 'Save':'Edit'}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-row-60">
+                    <div class="flex-row m10">
+                        <ckeditor [(ngModel)]="birdData.about" [editor]="Editor" [config]="editorConfig"></ckeditor>
+                        <!-- <h1 class="fs12" [innerHTML]="birdData.about" style="line-height: 20px;">{{birdData.about}}</h1> -->
                     </div>
                 </div>
             </div>

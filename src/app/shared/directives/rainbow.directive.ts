@@ -21,7 +21,7 @@ export class rainbowDirective{
       @HostBinding('style.border-color') border:any;
       @HostListener('keydown') newColor(){
         const colorPicker = Math.floor(Math.random() * this.possibleColors.length);
-        this.color = this.border = this.possibleColors[colorPicker];
+         this.border = this.possibleColors[colorPicker];
       }
 
       

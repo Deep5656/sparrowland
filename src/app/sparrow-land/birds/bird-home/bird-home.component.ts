@@ -72,10 +72,6 @@ export class BirdHomeComponent implements OnInit {
     this._dataService.getAllBirds().subscribe(res => {
       this.birdsArray = res;
       console.log("birds", this.birdsArray);
-      // for(let bird of this.birdsArray){
-      //   console.log(bird.image);
-        
-      // }
     });
   }
 
@@ -203,6 +199,7 @@ export class BirdHomeComponent implements OnInit {
       data: {
         'birdArray': this.birdsArray,
         'cardId': index,
+        'role': this.role
       }
     })
   }
@@ -210,6 +207,7 @@ export class BirdHomeComponent implements OnInit {
   Admin(role:any){
     if(role == 'Admin'){
       this.role = 'Normal';
+      this._subjectService.role.next('Normal');
     }else{
       const dialog = this.dialog.open(AdminLogin,{
         width: '30%',
@@ -219,6 +217,8 @@ export class BirdHomeComponent implements OnInit {
         console.log("Dialog closed with value: ",result);
         if(result){
           this.role = result;
+          this._subjectService.role.next('Admin');
+
         }
         
     })
@@ -231,6 +231,7 @@ export class BirdHomeComponent implements OnInit {
       height:'100%'
     }).afterClosed().subscribe((res)=>{
       this.getAllBirds();
+      this.getAllNotifications();
     })
   }
 

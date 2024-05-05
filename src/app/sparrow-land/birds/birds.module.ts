@@ -13,6 +13,7 @@ import { AdminLogin } from './bird-home/admin-login/admin-login.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { NotificationComponent } from './bird-home/notifications/notification.component';
 import { userBirdDialogComponent } from './bird-home/notifications/user-bird-dialog/user-bird-dialog.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -37,6 +38,7 @@ const birdRoute:Routes = [
         MatInputModule,
         MatIconModule,
         MatBadgeModule,
+        CKEditorModule,
         RouterModule.forChild(birdRoute),
         SharedModule
     ]

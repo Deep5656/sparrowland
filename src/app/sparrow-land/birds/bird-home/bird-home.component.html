@@ -79,35 +79,49 @@
             </ng-container> -->
             <ng-container *ngIf="birdsArray | filterPipe:searchVal as filteredBirds">
                 <div *ngFor="let bird of filteredBirds; let i = index;" class="flex-row-20 m20 mr5">
-                  <div class="flex-row">
-                    <mat-card class="box" cardClick [cardId]="bird.id" [birdsArray]="filteredBirds">
-                      <div style="position: relative; display: inline-block;">
-                        <img class="image" [src]="'data:image/png;base64,'+bird?.image" alt="{{bird?.imageName}}">
-                        <div style="position: absolute; top: 0%; left: 2%; color: white;">
-                          <mat-card-header>
-                            <mat-card-title>{{bird?.title}}</mat-card-title>
-                            <mat-card-subtitle style="color:rgb(226, 224, 224)">{{bird?.subTitle}}</mat-card-subtitle>
-                          </mat-card-header>
-                        </div>
-                      </div>
-                      <mat-card-content>
-                        <p>{{bird?.about | shortTxt:75}} <span class="fs10 color" (click)="showMore(bird.id)">Show more</span></p>
-                        <div *ngIf="role == 'Normal'" class="fs10" style="position: absolute;bottom: 0px; color:gray">
-                          Picture credit:{{bird?.userName ? bird?.userName : "Aman"}}
-                        </div>
-                      </mat-card-content>
-                      <div *ngIf="role == 'Admin'">
-                        <button mat-flat-button class="fs12 updateBtn" style="background-color: transparent;" (click)="cardUpdateBtn(i)">update</button>
-                        <button mat-flat-button class="fs12 removeBtn" style="background-color: transparent;" (click)="remove(i)">Remove</button>
-                      </div>
-                    </mat-card>
-                  </div>
+                    <div class="flex-row">
+                        <mat-card class="box" cardClick [role]="role" [cardId]="bird.id" [birdsArray]="filteredBirds">
+                            <div style="position: relative; display: inline-block;">
+                                <img class="image" [src]="'data:image/png;base64,'+bird?.image"
+                                    alt="{{bird?.imageName}}">
+                                <div style="position: absolute; top: 0%; left: 2%; color: white;">
+                                    <mat-card-header>
+                                        <mat-card-title>{{bird?.title}}</mat-card-title>
+                                        <mat-card-subtitle
+                                            style="color:rgb(226, 224, 224)">{{bird?.subTitle}}</mat-card-subtitle>
+                                    </mat-card-header>
+                                </div>
+                            </div>
+                            <mat-card-content>
+                                <!-- <div class="flex-row">
+                                    <p [innerHTML]="bird.about | shortTxt:75">
+                                        <span class="fs10 color" (click)="showMore(bird.id)">Show more</span>
+                                    </p>
+                                </div> -->
+                                <div class="flex-row">
+                                    <div [innerHTML]="bird.about | shortTxt:75"></div>
+                                    <span class="fs10 color" (click)="showMore(bird.id)">Show more</span>
+                                </div>
+                                <div *ngIf="role == 'Normal'" class="fs10"
+                                    style="position: absolute;bottom: 0px; color:gray">
+                                    Picture credit:{{bird?.userName ? bird?.userName : "SparrowLand"}}
+                                </div>
+                            </mat-card-content>
+                            <div *ngIf="role == 'Admin'">
+                                <button mat-flat-button class="fs12 updateBtn" style="background-color: transparent;"
+                                    (click)="cardUpdateBtn(i)">update</button>
+                                <button mat-flat-button class="fs12 removeBtn" style="background-color: transparent;"
+                                    (click)="remove(i)">Remove</button>
+                            </div>
+                        </mat-card>
+                    </div>
                 </div>
-              </ng-container>
-              <!-- <ng-container *ngIf="filteredBirds?.length === 0">
-                <p>No Content to show</p>
-              </ng-container> -->
-              
+                <div class="flex-row-100 tacenter" style="margin-top: 100px;">
+                    <ng-container *ngIf="filteredBirds.length === 0">
+                        <p>No Content to show</p>
+                    </ng-container>
+                </div>
+            </ng-container>
         </div>
     </div>
     <div class="flex-row-20" *ngIf="role == 'Admin'">
