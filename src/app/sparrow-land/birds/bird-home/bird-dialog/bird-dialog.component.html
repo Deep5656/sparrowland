@@ -22,6 +22,9 @@
                         <div *ngIf="role == 'Admin'">
                             <button style="position: absolute; right: 0px;" (click)="toggleEditMode()">Edit</button>
                         </div>
+                        <!-- <div *ngIf="role == 'Normal'">
+                            <button style="position: absolute; right: 0px;" (click)="convertText()">{{HindiMode ? 'Hindi':'English'}}</button>
+                        </div> -->
                     </div>
                 </div>
                 <div class="flex-row-60">
@@ -37,6 +40,7 @@
                         <div *ngIf="role == 'Admin'">
                             <button style="position: absolute; right: 0px;" (click)="toggleEditMode()">{{editMode ? 'Save':'Edit'}}</button>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="flex-row-60">
